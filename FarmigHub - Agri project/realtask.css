@@ -1,0 +1,818 @@
+/* Main Styles for GrowPaddy Platform */
+/* Global Variables */
+:root {
+    --primary-green: #2e7d32;
+    --light-green: #4caf50;
+    --dark-green: #1b5e20;
+    --accent-green: #8bc34a;
+    --background-light: #f1f8e9;
+    --text-dark: #212121;
+    --text-light: #f5f5f5;
+    --border-radius: 8px;
+    --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --transition: all 0.3s ease;
+}
+
+/* Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--background-light);
+    color: var(--text-dark);
+    line-height: 1.6;
+}
+
+a {
+    text-decoration: none;
+    color: var(--primary-green);
+    transition: var(--transition);
+}
+
+a:hover {
+    color: var(--dark-green);
+}
+
+ul {
+    list-style: none;
+}
+
+.btn {
+    background-color: var(--primary-green);
+    color: var(--text-light);
+    border: none;
+    padding: 10px 20px;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: var(--transition);
+    font-weight: 600;
+}
+
+.btn:hover {
+    background-color: var(--dark-green);
+    transform: translateY(-2px);
+}
+
+.btn:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Header Styles */
+.main-header {
+    background-color: white;
+    box-shadow: var(--box-shadow);
+    padding: 15px 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo {
+    width: 32px;
+    height: 32px;
+    transition: transform 0.3s ease;
+}
+
+.logo:hover {
+    transform: rotate(15deg);
+}
+
+.logo-container h1 {
+    font-size: 24px;
+    color: var(--primary-color);
+    margin: 0;
+}
+
+.main-nav {
+    display: flex;
+    gap: 20px;
+}
+
+.main-nav a {
+    padding: 10px 15px;
+    border-radius: var(--border-radius);
+    font-weight: 500;
+}
+
+.main-nav a.active {
+    background-color: var(--light-green);
+    color: white;
+}
+
+.user-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.login-btn {
+    background-color: transparent;
+    color: var(--primary-green);
+    border: 2px solid var(--primary-green);
+}
+
+.login-btn:hover {
+    background-color: var(--primary-green);
+    color: white;
+}
+
+/* Hero Section */
+.hero {
+    display: flex;
+    padding: 60px 5%;
+    align-items: center;
+    gap: 40px;
+    background: linear-gradient(to right, #f1f8e9, #e8f5e9);
+}
+
+.hero-content {
+    flex: 1;
+}
+
+.hero-content h1 {
+    font-size: 42px;
+    color: var(--dark-green);
+    margin-bottom: 15px;
+}
+
+.hero-content h2 {
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--primary-green);
+    margin-bottom: 20px;
+}
+
+.hero-content p {
+    font-size: 16px;
+    margin-bottom: 30px;
+}
+
+.start-journey-btn {
+    padding: 12px 30px;
+    font-size: 16px;
+    background-color: var(--accent-green);
+}
+
+.hero-image {
+    width: 100%;
+    max-width: 600px;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.paddy-field-img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.paddy-field-img:hover {
+    transform: scale(1.05);
+}
+
+/* Journey Tracker */
+.journey-tracker {
+    background-color: white;
+    padding: 30px 5%;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.journey-tracker h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: var(--primary-green);
+}
+
+.progress-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.progress-bar {
+    height: 15px;
+    background-color: #e0e0e0;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+.progress {
+    height: 100%;
+    background-color: var(--accent-green);
+    width: 0%;
+    transition: width 0.5s ease;
+}
+
+.progress-stats {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    color: #666;
+}
+
+#progress-percentage {
+    font-weight: bold;
+    color: var(--primary-green);
+}
+
+/* Phases Section */
+.phases-container {
+    padding: 40px 5%;
+    background-color: white;
+}
+
+.phases-tabs {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+    overflow-x: auto;
+    padding-bottom: 10px;
+}
+
+.phase-tab {
+    flex: 1;
+    min-width: 90px;
+    padding: 15px 10px;
+    background-color: #f5f5f5;
+    border: none;
+    border-bottom: 3px solid transparent;
+    text-align: center;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    color: #555;
+    transition: var(--transition);
+}
+
+.phase-tab:hover {
+    background-color: #e8f5e9;
+    color: var(--primary-green);
+}
+
+.phase-tab.active {
+    background-color: white;
+    border-bottom: 3px solid var(--primary-green);
+    color: var (--primary-green);
+    font-weight: 600;
+}
+
+.phase-content {
+    display: none;
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.phase-content.active {
+    display: block;
+}
+
+.phase-header {
+    margin-bottom: 25px;
+    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 15px;
+}
+
+.phase-header h3 {
+    color: var(--primary-green);
+    font-size: 24px;
+    margin-bottom: 5px;
+}
+
+.phase-objective {
+    font-style: italic;
+    color: #666;
+}
+
+.phase-details {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+.info-panel {
+    display: flex;
+    gap: 30px;
+}
+
+.phase-description {
+    flex: 2;
+}
+
+.phase-description p {
+    margin-bottom: 20px;
+}
+
+.resources h4 {
+    margin-bottom: 10px;
+    color: var(--primary-green);
+}
+
+.resources ul li {
+    margin-bottom: 5px;
+}
+
+.phase-image {
+    flex: 1;
+}
+
+.phase-img {
+    width: 100%;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+}
+
+.tasks-panel {
+    background-color: #f9f9f9;
+    padding: 25px;
+    border-radius: var(--border-radius);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.tasks-panel h4 {
+    margin-bottom: 15px;
+    color: var(--primary-green);
+}
+
+.task-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.task {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    position: relative;
+}
+
+.task input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+    accent-color: var(--primary-green);
+}
+
+.task label {
+    flex: 1;
+    cursor: pointer;
+    padding-top: 1px;
+}
+
+.info-btn {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: var(--primary-green);
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.task-details {
+    background-color: white;
+    padding: 15px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    margin-top: 10px;
+    margin-left: 28px;
+}
+
+.hidden {
+    display: none;
+}
+
+.task-completion {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.mark-complete-btn {
+    background-color: var(--accent-green);
+}
+
+/* Community Insights */
+.community-insights {
+    background-color: #f1f8e9;
+    padding: 25px;
+    border-radius: var(--border-radius);
+}
+
+.community-insights h4 {
+    margin-bottom: 15px;
+    color: var(--primary-green);
+}
+
+.insights-container {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    padding-bottom: 10px;
+}
+
+.insight-card {
+    background-color: white;
+    padding: 15px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    min-width: 300px;
+}
+
+.farmer-profile {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.farmer-img {
+    border-radius: 50%;
+}
+
+.farmer-name {
+    font-weight: 500;
+}
+
+/* Additional Resources */
+.additional-resources {
+    padding: 60px 5%;
+    background-color: #e8f5e9;
+}
+
+.additional-resources h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: var(--primary-green);
+}
+
+.resources-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+}
+
+.resource-card {
+    background-color: white;
+    padding: 25px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    text-align: center;
+    transition: var(--transition);
+}
+
+.resource-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+.resource-icon {
+    margin-bottom: 15px;
+}
+
+.resource-card h3 {
+    color: var(--primary-green);
+    margin-bottom: 10px;
+}
+
+.resource-card p {
+    margin-bottom: 15px;
+    color: #666;
+}
+
+.resource-link {
+    display: inline-block;
+    color: var(--accent-green);
+    font-weight: 500;
+}
+
+/* Footer */
+footer {
+    background-color: #1b5e20;
+    color: white;
+    padding: 60px 5% 20px;
+}
+
+.footer-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+.footer-logo {
+    flex: 1;
+    min-width: 200px;
+}
+
+.footer-logo p {
+    margin-top: 15px;
+}
+
+.footer-links {
+    flex: 2;
+    display: flex;
+    gap: 40px;
+}
+
+.link-group h4 {
+    margin-bottom: 20px;
+    color: var(--accent-green);
+}
+
+.link-group ul li {
+    margin-bottom: 10px;
+}
+
+.link-group a {
+    color: #aed581;
+}
+
+.link-group a:hover {
+    color: white;
+}
+
+.newsletter {
+    flex: 1;
+    min-width: 250px;
+}
+
+.newsletter h4 {
+    margin-bottom: 15px;
+    color: var(--accent-green);
+}
+
+.newsletter p {
+    margin-bottom: 15px;
+    color: #aed581;
+}
+
+.newsletter-form {
+    display: flex;
+}
+
+.newsletter-form input {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: var(--border-radius) 0 0 var(--border-radius);
+}
+
+.subscribe-btn {
+    border-radius: 0 var(--border-radius) var(--border-radius) 0;
+    background-color: var(--accent-green);
+}
+
+.copyright {
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    color: #aed581;
+    font-size: 14px;
+}
+
+/* Success Stories Section */
+.success-stories {
+    padding: 60px 5%;
+    background-color: white;
+}
+
+.success-stories h2 {
+    text-align: center;
+    color: var(--primary-green);
+    margin-bottom: 40px;
+}
+
+.stories-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.story-card {
+    background-color: #f8f9fa;
+    padding: 25px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+}
+
+.story-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.farmer-large-img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.story-title h3 {
+    color: var(--primary-green);
+    margin-bottom: 4px;
+}
+
+.story-title p {
+    color: var(--text-light);
+    font-size: 0.9rem;
+}
+
+.story-content {
+    font-style: italic;
+    color: var(--text-dark);
+    line-height: 1.6;
+}
+
+/* Footer Styles Update */
+.main-footer {
+    background-color: var(--dark-green);
+    color: white;
+    padding: 60px 5% 20px;
+}
+
+.footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo-small {
+    width: 32px;
+    height: 32px;
+}
+
+.social-links {
+    display: flex;
+    gap: 15px;
+}
+
+.social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    transition: var(--transition);
+}
+
+.social-link:hover {
+    background-color: var(--primary-green);
+    transform: translateY(-2px);
+}
+
+.social-link svg {
+    width: 20px;
+    height: 20px;
+}
+
+/* Resources Section Update */
+.resources-section {
+    padding: 60px 5%;
+    background-color: var(--background-light);
+}
+
+.resource-card {
+    transition: var(--transition);
+    padding: 30px;
+}
+
+.resource-icon {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 20px;
+}
+
+/* Responsive Design Updates */
+@media (max-width: 768px) {
+    .stories-container {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-content {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .social-links {
+        justify-content: center;
+    }
+}
+
+/* Phase Navigation Updates */
+.phases-tabs {
+    display: flex;
+    overflow-x: auto;
+    gap: 10px;
+    padding-bottom: 15px;
+    margin-bottom: 30px;
+}
+
+.phase-tab {
+    min-width: 120px;
+    white-space: nowrap;
+    padding: 12px 20px;
+    border-radius: var(--border-radius);
+    background-color: #f8f9fa;
+    color: var(--text-dark);
+    transition: var(--transition);
+}
+
+.phase-tab.active {
+    background-color: var(--primary-green);
+    color: white;
+}
+
+/* Task Completion Animation */
+@keyframes taskComplete {
+    from { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    to { transform: scale(1); }
+}
+
+.task input[type="checkbox"]:checked + label {
+    color: var(--primary-green);
+    text-decoration: line-through;
+    animation: taskComplete 0.3s ease;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .hero {
+        flex-direction: column;
+    }
+    
+    .info-panel {
+        flex-direction: column;
+    }
+    
+    .footer-content {
+        flex-direction: column;
+    }
+    
+    .footer-links {
+        flex-direction: column;
+        gap: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .main-header {
+        flex-direction: column;
+        padding: 15px 3%;
+    }
+    
+    .main-nav {
+        margin: 15px 0;
+        overflow-x: auto;
+        width: 100%;
+        padding-bottom: 5px;
+    }
+    
+    .phases-tabs {
+        flex-wrap: nowrap;
+    }
+    
+    .phase-tab {
+        font-size: 12px;
+    }
+    
+    .task-completion {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .resources-grid {
+        grid-template-columns: 1fr;
+    }
+}

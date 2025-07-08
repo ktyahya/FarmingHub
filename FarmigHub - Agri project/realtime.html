@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real Time Suggestion</title>
+    <style>
+        :root {
+            --primary: #4CAF50;
+            --primary-light: #81C784;
+            --primary-dark: #2E7D32;
+            --accent: #FF5722;
+            --text-primary: #263238;
+            --text-secondary: #546E7A;
+            --background: #F5F9F6;
+            --card-bg: #FFFFFF;
+            --shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            --border-radius: 16px;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--background);
+            color: var(--text-primary);
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .dashboard-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--primary-dark);
+        }
+        
+        .logo-icon {
+            background-color: var(--primary);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        nav {
+            display: flex;
+            gap: 20px;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        nav a:hover, nav a.active {
+            color: var(--primary-dark);
+            background-color: rgba(76, 175, 80, 0.1);
+        }
+        
+        .main-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 24px;
+        }
+        
+        .card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 24px;
+            box-shadow: var(--shadow);
+            margin-bottom: 24px;
+        }
+        
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .card-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+        
+        .stat-card {
+            background: linear-gradient(135deg, var(--primary-light), var(--primary));
+            color: white;
+            border-radius: var(--border-radius);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 140px;
+            transition: transform 0.3s ease;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .stat-title {
+            font-size: 14px;
+            font-weight: 500;
+            opacity: 0.9;
+        }
+        
+        .stat-value {
+            font-size: 32px;
+            font-weight: 700;
+            margin-top: 8px;
+        }
+        
+        .stat-change {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 14px;
+            margin-top: 8px;
+        }
+        
+        .stat-increase {
+            color: #A5D6A7;
+        }
+        
+        .progress-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        
+        .progress-circle-container {
+            position: relative;
+            width: 160px;
+            height: 160px;
+        }
+        
+        .progress-circle {
+            transform: rotate(-90deg);
+            width: 100%;
+            height: 100%;
+        }
+        
+        .progress-info {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+        
+        .progress-value {
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--primary-dark);
+        }
+        
+        .progress-label {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-top: 4px;
+        }
+        
+        .progress-legend {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 16px;
+        }
+        
+        .legend-color {
+            width: 12px;
+            height: 12px;
+            border-radius: 3px;
+        }
+        
+        .legend-label {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+        
+        .task-completion {
+            flex: 1;
+            padding-left: 30px;
+        }
+        
+        .task-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+            padding: 12px;
+            border-radius: 8px;
+            background-color: rgba(76, 175, 80, 0.05);
+            transition: background-color 0.3s ease;
+        }
+        
+        .task-item:hover {
+            background-color: rgba(76, 175, 80, 0.1);
+        }
+        
+        .task-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background-color: rgba(76, 175, 80, 0.2);
+            border-radius: 8px;
+            color: var(--primary-dark);
+        }
+        
+        .task-details {
+            flex: 1;
+        }
+        
+        .task-name {
+            font-size: 16px;
+            font-weight: 500;
+        }
+        
+        .task-status {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+        
+        .chart-container {
+            height: 300px;
+            position: relative;
+        }
+        
+        .chart-legend {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            margin-top: 16px;
+        }
+        
+        .chart-legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+        
+        .chart-btn-group {
+            display: flex;
+            gap: 8px;
+        }
+        
+        .chart-btn {
+            padding: 6px 12px;
+            border-radius: 6px;
+            border: none;
+            background: rgba(76, 175, 80, 0.1);
+            color: var(--primary-dark);
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .chart-btn.active {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .chart-btn:hover {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .recommendations {
+            padding: 20px 0;
+        }
+        
+        .recommendation-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            padding: 16px;
+            border-radius: 12px;
+            background-color: rgba(255, 255, 255, 0.5);
+            margin-bottom: 16px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .recommendation-item:hover {
+            background-color: var(--card-bg);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            transform: translateY(-2px);
+        }
+        
+        .recommendation-icon {
+            width: 48px;
+            height: 48px;
+            background-color: rgba(76, 175, 80, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 24px;
+        }
+        
+        .recommendation-content {
+            flex: 1;
+        }
+        
+        .recommendation-title {
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        
+        .recommendation-text {
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        
+        .data-analysis-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .data-analysis-table tr {
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        
+        .data-analysis-table tr:last-child {
+            border-bottom: none;
+        }
+        
+        .data-analysis-table td {
+            padding: 16px 0;
+        }
+        
+        .data-analysis-table td:first-child {
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+        
+        .data-analysis-table td:last-child {
+            text-align: right;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 16px;
+            font-size: 13px;
+            font-weight: 500;
+            background-color: rgba(76, 175, 80, 0.1);
+            color: var(--primary-dark);
+        }
+        
+        .weather-card {
+            background: linear-gradient(135deg, #81C784, #4CAF50);
+            color: white;
+            border-radius: var(--border-radius);
+            padding: 24px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .weather-icon {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 48px;
+            opacity: 0.5;
+        }
+        
+        .weather-temp {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        
+        .weather-info {
+            display: flex;
+            gap: 24px;
+            margin-top: 16px;
+        }
+        
+        .weather-item {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .weather-item-value {
+            font-weight: 600;
+            font-size: 16px;
+        }
+        
+        .weather-item-label {
+            font-size: 12px;
+            opacity: 0.7;
+        }
+        
+        @media (max-width: 992px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .progress-container {
+                flex-direction: column;
+                align-items: center;
+                gap: 30px;
+            }
+            
+            .task-completion {
+                padding-left: 0;
+                width: 100%;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            nav {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <header>
+            <div class="logo">
+                <div class="logo-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 2a10 10 0 1 0 10 10H12V2z"></path>
+                        <path d="M21 12a9 9 0 0 0-9-9v9h9z"></path>
+                    </svg>
+                </div>
+                Real Time Suggestion
+            </div>
+        
+        </header>
+        
+        <div class="main-content">
+            <div class="left-column">
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">Crop Performance</h2>
+                    </div>
+                    
+                    <div class="progress-container">
+                        <div class="progress-circle-container">
+                            <svg class="progress-circle" viewBox="0 0 36 36">
+                                <path class="circle-bg"
+                                      d="M18 2.0845
+                                        a 15.9155 15.9155 0 0 1 0 31.831
+                                        a 15.9155 15.9155 0 0 1 0 -31.831"
+                                      fill="none"
+                                      stroke="#E8F5E9"
+                                      stroke-width="3" />
+                                <path class="circle"
+                                      d="M18 2.0845
+                                        a 15.9155 15.9155 0 0 1 0 31.831
+                                        a 15.9155 15.9155 0 0 1 0 -31.831"
+                                      fill="none"
+                                      stroke="#4CAF50"
+                                      stroke-width="3"
+                                      stroke-dasharray="100, 100"
+                                      stroke-dashoffset="35" />
+                            </svg>
+                            <div class="progress-info">
+                                <div class="progress-value">65%</div>
+                                <div class="progress-label">Task Completed</div>
+                            </div>
+                        </div>
+                        
+                        <div class="task-completion">
+                            <div class="task-item">
+                                <div class="task-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                                    </svg>
+                                </div>
+                                <div class="task-details">
+                                    <div class="task-name">Pest Control</div>
+                                    <div class="task-status">Completed on Apr 18, 2025</div>
+                                </div>
+                            </div>
+                            
+                            <div class="task-item">
+                                <div class="task-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                                    </svg>
+                                </div>
+                                <div class="task-details">
+                                    <div class="task-name">Fertilizer Application</div>
+                                    <div class="task-status">Completed on Apr 15, 2025</div>
+                                </div>
+                            </div>
+                            
+                            <div class="task-item">
+                                <div class="task-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                                    </svg>
+                                </div>
+                                <div class="task-details">
+                                    <div class="task-name">Irrigation Check</div>
+                                    <div class="task-status">Scheduled for Apr 24, 2025</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">Yield Prediction</h2>
+                    </div>
+                    
+                    <div class="chart-container">
+                        <div class="chart-btn-group-vertical">
+                            <button class="chart-btn">Day</button>
+                            <button class="chart-btn">Week</button>
+                            <button class="chart-btn active">Month</button>
+                            <button class="chart-btn">Year</button>
+                        </div>
+                        <canvas id="yieldChart"></canvas>
+                    </div>
+                    
+                    <div class="chart-legend">
+                        <div class="chart-legend-item">
+                            <div class="legend-color" style="background-color: #4CAF50;"></div>
+                            <div>Current Year</div>
+                        </div>
+                        <div class="chart-legend-item">
+                            <div class="legend-color" style="background-color: rgba(76, 175, 80, 0.3);"></div>
+                            <div>Previous Year</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-title">SOIL MOISTURE</div>
+                        <div class="stat-value">68%</div>
+                        <div class="stat-change stat-increase">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="18 15 12 9 6 15"></polyline>
+                            </svg>
+                            +4.5% from last week
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-title">WATER CONSUMPTION</div>
+                        <div class="stat-value">60%</div>
+                        <div class="stat-change">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                            -2.3% from last week
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            
+                
+                
+                
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">Recommendations</h2>
+                    </div>
+
+                    <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">Data Analysis</h2>
+                    </div>
+                    
+                    <table class="data-analysis-table">
+                        <tr>
+                            <td>Suitable Crop For The Soil</td>
+                            <td><span class="badge">WHEAT</span></td>
+                        </tr>
+                        <tr>
+                            <td>Water Consumption</td>
+                            <td>60%</td>
+                        </tr>
+                        <tr>
+                            <td>Suitable Weather</td>
+                            <td>SUMMER</td>
+                        </tr>
+                        <tr>
+                            <td>Suitable Fertilizer</td>
+                            <td>Calcium, Ammonium Nitrate</td>
+                        </tr>
+                    </table>
+                </div>
+                    
+                    <div class="recommendations">
+                        <div class="recommendation-item">
+                            <div class="recommendation-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                                    <path d="M2 17l10 5 10-5"></path>
+                                    <path d="M2 12l10 5 10-5"></path>
+                                </svg>
+                            </div>
+                            <div class="recommendation-content">
+                                <div class="recommendation-title">Soil Treatment</div>
+                                <div class="recommendation-text">Apply calcium-rich amendments to improve soil structure for optimal wheat growth.</div>
+                            </div>
+                        </div>
+                        
+                        <div class="recommendation-item">
+                            <div class="recommendation-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M8 2h8l4 4-10 16L0 6l4-4h4"></path>
+                                </svg>
+                            </div>
+                            <div class="recommendation-content">
+                                <div class="recommendation-title">Irrigation Schedule</div>
+                                <div class="recommendation-text">Reduce watering frequency to once every 4 days based on current soil moisture levels.</div>
+                            </div>
+                        </div>
+                        
+                        <div class="recommendation-item">
+                            <div class="recommendation-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="8" y1="6" x2="21" y2="6"></line>
+                                    <line x1="8" y1="12" x2="21" y2="12"></line>
+                                    <line x1="8" y1="18" x2="21" y2="18"></line>
+                                    <line x1="3" y1="6" x2="3.01" y2="6"></line>
+                                    <line x1="3" y1="12" x2="3.01" y2="12"></line>
+                                    <line x1="3" y1="18" x2="3.01" y2="18"></line>
+                                </svg>
+                            </div>
+                            <div class="recommendation-content">
+                                <div class="recommendation-title">Pest Control</div>
+                                <div class="recommendation-text">Monitor for aphids in the coming week as temperatures continue to rise.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Initialize Yield Prediction Chart
+        document.addEventListener('DOMContentLoaded', function() {
+            const ctx = document.getElementById('yieldChart').getContext('2d');
+            
+            const yieldChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                    datasets: [
+                        {
+                            label: 'Current Year',
+                            data: [20, 40, 90, 60, 30, 20, 20, 30, 50, 80, 100, 100],
+                            borderColor: '#4CAF50',
+                            backgroundColor: 'rgba(76, 175, 80, 0.1)',
+                            borderWidth: 2,
+                            tension: 0.4,
+                            fill: true
+                        },
+                        {
+                            label: 'Previous Year',
+                            data: [30, 50, 70, 40, 50, 40, 30, 40, 60, 70, 90, 85],
+                            borderColor: 'rgba(76, 175, 80, 0.3)',
+                            backgroundColor: 'rgba(76, 175, 80, 0.05)',
+                            borderWidth: 2,
+                            borderDash: [5, 5],
+                            tension: 0.4,
+                            fill: true
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: {
+                                color: 'rgba(0, 0, 0, 0.05)'
+                            },
+                            ticks: {
+                                callback: function(value) {
+                                    return value + '%';
+                                }
+                            }
+                        },
+                        x: {
+                            grid: {
+                                display: false
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            mode: 'index',
+                            intersect: false,
+                            callbacks: {
+                                label: function(context) {
+                                    return context.dataset.label + ': ' + context.parsed.y + '%';
+                                }
+                            }
+                        }
+                    },
+                    interaction: {
+                        mode: 'nearest',
+                        intersect: false,
+                        axis: 'x'
+                    }
+                }
+            });
+            
+            // Animate the progress circle
+            const circle = document.querySelector('.circle');
+            const circumference = 100;
+            
+            function setProgress(percent) {
+                const offset = circumference - percent;
+                circle.style.strokeDashoffset = offset;
+            }
+            
+            // Animate from 0 to 65%
+            let currentProgress = 0;
+            const targetProgress = 65;
+            const duration = 1500; // 1.5 seconds
+            const interval = 20; // Update every 20ms
+            const steps = duration / interval;
+            const step = targetProgress / steps;
+            
+            const progressInterval = setInterval(() => {
+                currentProgress += step;
+                if (currentProgress >= targetProgress) {
+                    currentProgress = targetProgress;
+                    clearInterval(progressInterval);
+                }
+                setProgress(currentProgress);
+            }, interval);
+
+            // Add click handlers for chart buttons
+            const chartBtns = document.querySelectorAll('.chart-btn');
+            chartBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    chartBtns.forEach(b => b.classList.remove('active'));
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    // Update chart data based on selected time period
+                    const period = this.textContent.toLowerCase();
+                    updateChartData(period);
+                });
+            });
+
+            // Function to update chart data
+            function updateChartData(period) {
+                const data = {
+                    day: {
+                        current: [45, 52, 60, 65, 58, 55, 50],
+                        previous: [40, 45, 55, 58, 52, 48, 45]
+                    },
+                    week: {
+                        current: [50, 55, 65, 60, 58, 62, 70],
+                        previous: [45, 50, 58, 55, 52, 57, 63]
+                    },
+                    month: {
+                        current: [20, 40, 90, 60, 30, 20, 20, 30, 50, 80, 100, 100],
+                        previous: [30, 50, 70, 40, 50, 40, 30, 40, 60, 70, 90, 85]
+                    },
+                    year: {
+                        current: [45, 48, 52, 55, 60, 65, 70, 75, 78, 82, 85, 88],
+                        previous: [40, 42, 45, 48, 52, 58, 62, 68, 72, 75, 78, 80]
+                    }
+                };
+
+                yieldChart.data.datasets[0].data = data[period].current;
+                yieldChart.data.datasets[1].data = data[period].previous;
+                
+                // Update labels for day view
+                if (period === 'day') {
+                    yieldChart.data.labels = ['6am', '9am', '12pm', '3pm', '6pm', '9pm', '12am'];
+                } else if (period === 'week') {
+                    yieldChart.data.labels = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+                } else if (period === 'month') {
+                    yieldChart.data.labels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+                } else {
+                    yieldChart.data.labels = ['2020', '2021', '2022', '2023', '2024', '2025'];
+                }
+                
+                yieldChart.update();
+            }
+
+            // Add click handlers for recommendation items
+            const recommendationItems = document.querySelectorAll('.recommendation-item');
+            recommendationItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    // Add animation class
+                    this.style.transform = 'scale(0.98)';
+                    setTimeout(() => {
+                        this.style.transform = 'translateY(-2px)';
+                    }, 200);
+                });
+            });
+
+            // Update weather data periodically
+            function updateWeatherData() {
+                const weatherData = {
+                    temperature: Math.floor(Math.random() * (32 - 24) + 24),
+                    humidity: Math.floor(Math.random() * (60 - 30) + 30),
+                    wind: Math.floor(Math.random() * (15 - 5) + 5)
+                };
+
+                document.querySelector('.weather-temp').textContent = `${weatherData.temperature}°C`;
+                document.querySelector('.weather-item-value').textContent = `${weatherData.humidity}%`;
+                document.querySelector('.weather-info .weather-item:nth-child(2) .weather-item-value').textContent = 
+                    `${weatherData.wind} km/h`;
+            }
+
+            // Update weather every 30 minutes
+            setInterval(updateWeatherData, 1800000);
+
+            // Initial weather update
+            updateWeatherData();
+        });
+    </script>
+</body>
+</html>

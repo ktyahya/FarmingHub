@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings - FarmingHub</title>
+    <link rel="stylesheet" href="settings.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+</head>
+<body>
+    <div class="settings-container">
+        <h1><i class="fas fa-cog"></i> Settings</h1>
+        
+        <div class="settings-section">
+            <h2>Profile Settings</h2>
+            <div class="profile-settings">
+                <div class="profile-image">
+                    <img src="./th.jpeg" alt="Profile Picture" id="profile-pic">
+                    <button id="change-photo">Change Photo</button>
+                </div>
+                <div class="profile-info">
+                    <div class="form-group">
+                        <label>Name</label>
+                        <input type="text" id="name" value="Vel Murugan">
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" id="email" value="velmurugan@gmail.com">
+                    </div>
+                    <div class="form-group">
+                        <label>Phone</label>
+                        <input type="tel" id="phone" value="+91 9876543210">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="settings-section">
+            <h2>Farm Details</h2>
+            <div class="form-group">
+                <label>Farm Name</label>
+                <input type="text" id="farm-name" value="Green Valley Farm">
+            </div>
+            <div class="form-group">
+                <label>Location</label>
+                <input type="text" id="location" value="Coimbatore, Tamil Nadu">
+            </div>
+            <div class="form-group">
+                <label>Farm Size (Acres)</label>
+                <input type="number" id="farm-size" value="25">
+            </div>
+        </div>
+
+        <div class="settings-section">
+            <h2>Preferences</h2>
+            <div class="preference-group">
+                <label>Language</label>
+                <select id="language">
+                    <option value="en">English</option>
+                    <option value="ta">Tamil</option>
+                </select>
+            </div>
+            <div class="preference-group">
+                <label>Temperature Unit</label>
+                <select id="temp-unit">
+                    <option value="celsius">Celsius</option>
+                    <option value="fahrenheit">Fahrenheit</option>
+                </select>
+            </div>
+            <div class="preference-group">
+                <label>Notifications</label>
+                <div class="toggle-switches">
+                    <div class="toggle-group">
+                        <label>Email Notifications</label>
+                        <input type="checkbox" id="email-notif" checked>
+                    </div>
+                    <div class="toggle-group">
+                        <label>Weather Alerts</label>
+                        <input type="checkbox" id="weather-notif" checked>
+                    </div>
+                    <div class="toggle-group">
+                        <label>Task Reminders</label>
+                        <input type="checkbox" id="task-notif" checked>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="settings-section">
+            <h2>Security</h2>
+            <button class="change-password-btn">Change Password</button>
+            <button class="enable-2fa-btn">Enable Two-Factor Authentication</button>
+        </div>
+
+        <div class="button-group">
+            <button class="save-btn">Save Changes</button>
+            <button class="cancel-btn">Cancel</button>
+        </div>
+    </div>
+
+    <script src="settings.js"></script>
+</body>
+</html>
