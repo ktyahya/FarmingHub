@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farming Hub - Tamil Agriculture Video Lectures</title>
+    <style>
+        :root {
+            --primary-color: #2e7d32;
+            --secondary-color: #81c784;
+            --accent-color: #ffeb3b;
+            --text-color: #212121;
+            --light-bg: #f1f8e9;
+            --card-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--light-bg);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1rem 0;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .custom-logo {
+            width: 32px;
+            height: 32px;
+            margin: 0 5px;
+        }
+
+        .logo i {
+            font-size: 2rem;
+        }
+
+        .logo h1 {
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+
+        .banner {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/api/placeholder/1200/400');
+            background-size: cover;
+            background-position: center;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--primary-color);
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 3px;
+            background-color: var(--accent-color);
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .video-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .video-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .thumbnail {
+            position: relative;
+            overflow: hidden;
+            height: 180px;
+        }
+
+        .thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .thumbnail:hover img {
+            transform: scale(1.05);
+        }
+
+        .play-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(255, 255, 255, 0.7);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .thumbnail:hover .play-button {
+            opacity: 1;
+        }
+
+        .play-button i {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+        }
+
+        .video-info {
+            padding: 1rem;
+        }
+
+        .video-title {
+            font-size: 1.2rem;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .video-desc {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .tag {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+            padding: 0.25rem 0.5rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .view-button {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+            margin-top: 0.5rem;
+        }
+
+        .view-button:hover {
+            background-color: #1b5e20;
+        }
+
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 1.5rem 0;
+            margin-top: 3rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 1rem 0;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+
+        .search-bar {
+            display: flex;
+            margin: 2rem auto;
+            max-width: 600px;
+            overflow: hidden;
+            border-radius: 50px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .search-bar input {
+            flex: 1;
+            padding: 1rem 1.5rem;
+            border: none;
+            outline: none;
+            font-size: 1rem;
+        }
+
+        .search-bar button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0 1.5rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .search-bar button:hover {
+            background-color: #1b5e20;
+        }
+
+        .categories {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .category-btn {
+            background-color: white;
+            border: 2px solid var(--secondary-color);
+            border-radius: 50px;
+            padding: 0.5rem 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .category-btn:hover, .category-btn.active {
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+        }
+
+        .language-toggle {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .language-btn {
+            background-color: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .language-btn.active {
+            background-color: var(--accent-color);
+            color: var(--text-color);
+        }
+
+        @media (max-width: 768px) {
+            .video-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 1.5rem;
+            }
+            
+            .container {
+                padding: 1rem;
+            }
+            
+            .banner {
+                height: 150px;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="language-toggle">
+            <button class="language-btn active">Tamil</button>
+            <button class="language-btn">English</button>
+        </div>
+        <div class="logo">
+            
+            <img src="LOGO.SVG" alt="FarmingHub Logo" class="custom-logo">
+            <h1>FarmingHub</h1>
+        </div>
+       
+    </header>
+
+    <div class="banner">
+        <div>
+            <h2>Tamil Agriculture Video Lectures</h2>
+            <p>Learn modern farming techniques and government schemes to enhance your agricultural practices</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="search-bar">
+            <input type="text" placeholder="Search for farming videos, techniques, crops...">
+            <button><i class="fas fa-search"></i></button>
+        </div>
+
+        <div class="categories">
+            <button class="category-btn active">All Videos</button>
+            <button class="category-btn">Organic Farming</button>
+            <button class="category-btn">Government Schemes</button>
+            <button class="category-btn">Terrace Gardening</button>
+            <button class="category-btn">Profitable Crops</button>
+            <button class="category-btn">Success Stories</button>
+        </div>
+
+        <h2 class="section-title">Featured Video Lectures</h2>
+
+        <div class="video-grid" id="videoGrid">
+            <!-- Videos will be dynamically added here -->
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-links">
+            <a href="#">About Us</a>
+            <a href="#">Contact</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+        </div>
+        <p>&copy; 2025 FarmingHub. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Video lecture data
+            const videoLectures = [
+                {
+                    id: 'kQzN72sDR0k',
+                    title: 'Organic Farming in Tamil',
+                    description: 'Learn the fundamentals and benefits of organic farming techniques suitable for Tamil Nadu climate',
+                    thumbnail: '/images/Organic-farming.jpg',
+                    tags: ['Organic', 'Sustainable', 'Natural Farming'],
+                    views: '245K',
+                    duration: '18:25',
+                    category: 'Organic Farming'
+                },
+                {
+                    id: 'sNRyJ4mFw6A',
+                    title: 'Top 10 Government Schemes for Farmers',
+                    description: 'Comprehensive guide to government subsidies and schemes available for Tamil farmers',
+                    thumbnail: '/images/government-schemes.jpg',
+                    tags: ['Government', 'Subsidies', 'Schemes'],
+                    views: '189K',
+                    duration: '25:12',
+                    category: 'Government Schemes'
+                },
+                {
+                    id: 'ib5nb5YF5j4',
+                    title: 'How to Start Terrace Gardening in Tamil',
+                    description: 'Step-by-step guide to setting up and maintaining a successful terrace garden in urban areas',
+                    thumbnail: '/images/terrace.jpg',
+                    tags: ['Terrace', 'Urban Farming', 'Gardening'],
+                    views: '320K',
+                    duration: '15:40',
+                    category: 'Terrace Gardening'
+                },
+                {
+                    id: 'jFmjP5PDeMQ',
+                    title: 'High Income Crops for Small Farmers',
+                    description: 'List of crops that can provide high returns even with limited land space for small farmers',
+                    thumbnail: '/images/earning-farmer.jpg',
+                    tags: ['High Income', 'Small Farm', 'Profitable'],
+                    views: '412K',
+                    duration: '22:18',
+                    category: 'Profitable Crops'
+                },
+                {
+                    id: '2uTm8FeHKyg',
+                    title: 'Success Story of a Farmer Earning Lakhs in Tamil',
+                    description: 'Inspiring journey of a local farmer who transformed his small farm into a profitable business',
+                    thumbnail: '/images/success-story.jpg',
+                    tags: ['Success Story', 'Inspiration', 'Business'],
+                    views: '278K',
+                    duration: '30:05',
+                    category: 'Success Stories'
+                }
+            ];
+
+            const videoGrid = document.getElementById('videoGrid');
+            
+            // Function to render videos
+            function renderVideos(videos) {
+                videoGrid.innerHTML = '';
+                
+                videos.forEach(video => {
+                    const videoCard = document.createElement('div');
+                    videoCard.className = 'video-card';
+                    
+                    videoCard.innerHTML = `
+                        <div class="thumbnail">
+                            <img src="${video.thumbnail}" 
+                                 alt="${video.title}" 
+                                 onerror="this.src='https://i.ytimg.com/vi/${video.id}/hqdefault.jpg'">
+                            <div class="play-button">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="video-info">
+                            <h3 class="video-title">${video.title}</h3>
+                            <p class="video-desc">${video.description}</p>
+                            <div>
+                                ${video.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+                            </div>
+                            <p style="font-size: 0.8rem; color: #666; margin-top: 0.5rem;">
+                                <i class="fas fa-eye"></i> ${video.views} views | 
+                                <i class="fas fa-clock"></i> ${video.duration}
+                            </p>
+                            <a href="https://www.youtube.com/watch?v=${video.id}" target="_blank" class="view-button">
+                                Watch Video
+                            </a>
+                        </div>
+                    `;
+                    
+                    videoGrid.appendChild(videoCard);
+                });
+            }
+            
+            // Initial render
+            renderVideos(videoLectures);
+            
+            // Filter by category
+            const categoryButtons = document.querySelectorAll('.category-btn');
+            categoryButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    categoryButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    const category = this.textContent;
+                    
+                    if (category === 'All Videos') {
+                        renderVideos(videoLectures);
+                    } else {
+                        const filteredVideos = videoLectures.filter(video => video.category === category);
+                        renderVideos(filteredVideos);
+                    }
+                });
+            });
+            
+            // Search functionality
+            const searchInput = document.querySelector('.search-bar input');
+            const searchButton = document.querySelector('.search-bar button');
+            
+            function performSearch() {
+                const query = searchInput.value.toLowerCase();
+                if (query.trim() === '') {
+                    renderVideos(videoLectures);
+                    return;
+                }
+                
+                const filteredVideos = videoLectures.filter(video => 
+                    video.title.toLowerCase().includes(query) || 
+                    video.description.toLowerCase().includes(query) ||
+                    video.tags.some(tag => tag.toLowerCase().includes(query))
+                );
+                
+                renderVideos(filteredVideos);
+            }
+            
+            searchButton.addEventListener('click', performSearch);
+            searchInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    performSearch();
+                }
+            });
+            
+            // Language toggle functionality
+            const languageButtons = document.querySelectorAll('.language-btn');
+            languageButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    languageButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    // In a real application, this would trigger language change
+                    // For demo purposes, we'll just show an alert
+                    alert(`Language switched to ${this.textContent}`);
+                });
+            });
+            
+            // Add click event to video cards to simulate video playing
+            document.addEventListener('click', function(e) {
+                const playButton = e.target.closest('.play-button');
+                if (playButton) {
+                    const videoCard = playButton.closest('.video-card');
+                    const videoLink = videoCard.querySelector('.view-button').href;
+                    window.open(videoLink, '_blank');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

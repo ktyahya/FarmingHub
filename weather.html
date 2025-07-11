@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farming Hub - Weather Information</title>
+    <link rel="stylesheet" href="weather.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <svg class="logo-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M17,8C8,10 5.9,16.17 3.82,21.34L5.71,22L6.66,19.7C7.14,19.87 7.64,20 8,20C19,20 22,3 22,3C21,5 14,5.25 9,6.25C4,7.25 2,11.5 2,13.5C2,15.5 3.75,17.25 3.75,17.25C7,8 17,8 17,8Z" fill="#4CAF50"/>
+                </svg>
+                <h1>Farming Hub</h1>
+            </div>
+            <div class="search-container">
+                <button class="back-btn">BACK</button>
+                <div class="search-box">
+                    <input type="text" id="location-search" placeholder="Search location...">
+                    <button id="search-btn"><i class="fas fa-search"></i></button>
+                </div>
+                <button class="weather-btn">GET WEATHER</button>
+            </div>
+        </header>
+
+        <main>
+            <section class="weather-section">
+                <h2>Weather</h2>
+                <div class="weather-card">
+                    <div class="location-info">
+                        <h3 id="location">Coimbatore</h3>
+                    </div>
+                    
+                    <div class="weather-info">
+                        <div class="main-weather">
+                            <div class="temperature">
+                                <h2 id="temp">13°C</h2>
+                            </div>
+                            <div class="condition">
+                                <p id="weather-condition">Cloudy</p>
+                                <div id="weather-icon">
+                                    <i class="fas fa-cloud"></i>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="weather-details">
+                            <div class="detail-item">
+                                <h4 id="humidity">32%</h4>
+                                <p>Humidity</p>
+                            </div>
+                            <div class="detail-item">
+                                <h4 id="wind">22 km/h</h4>
+                                <p>Wind</p>
+                            </div>
+                            <div class="detail-item">
+                                <h4 id="pressure">1005 hPa</h4>
+                                <p>Pressure</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="forecast-section">
+                <h2>Forecast for <span id="forecast-location">Coimbatore</span></h2>
+                <div class="forecast-days" id="forecast-container">
+                    <!-- Forecast data will be populated by JavaScript -->
+                </div>
+                <div class="farming-advice">
+                    <p id="advice-text">Weather conditions are ideal for your crops today. Consider increasing water supply based on current conditions.</p>
+                </div>
+            </section>
+
+            <section class="crop-recommendations">
+                <h2>Crop Recommendations</h2>
+                <div class="crop-cards" id="crop-recommendations">
+                    <div class="crop-card">
+                        <div class="crop-image">
+                            <img src="./images/cotton-crop.jpg" alt="Cotton crop">
+                        </div>
+                        <div class="crop-info">
+                            <h3>Cotton</h3>
+                            <p>Temperature: 21-30°C</p>
+                            <p>Rainfall: 500-1500mm</p>
+                        </div>
+                    </div>
+                    <div class="crop-card">
+                        <div class="crop-image">
+                            <img src="./images/maize-crop.jpg" alt="Maize crop">
+                        </div>
+                        <div class="crop-info">
+                            <h3>Maize</h3>
+                            <p>Temperature: 20-30°C</p>
+                            <p>Rainfall: 600-1200mm</p>
+                        </div>
+                    </div>
+                    <div class="crop-card">
+                        <div class="crop-image">
+                            <img src="./images/sugarcane-crop.jpg" alt="Sugarcane crop">
+                        </div>
+                        <div class="crop-info">
+                            <h3>Sugarcane</h3>
+                            <p>Temperature: 20-35°C</p>
+                            <p>Rainfall: 1500-2500mm</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2025 Farming Hub - Helping farmers make better decisions</p>
+            <div class="footer-links">
+                <a href="#">About</a>
+                <a href="#">Contact</a>
+                <a href="#">Privacy Policy</a>
+            </div>
+        </footer>
+    </div>
+
+    <script src="weather.js"></script>
+</body>
+</html>

@@ -1,0 +1,324 @@
+:root {
+  --lux-bg: #101018;
+  --lux-bg2: #181828;
+  --lux-glass: rgba(30,30,40,0.7);
+  --lux-glow1: #6e7fff;
+  --lux-glow2: #00eaff;
+  --lux-glow3: #ff4fd8;
+  --lux-white: #f8f8fa;
+  --lux-chrome: linear-gradient(90deg, #6e7fff 0%, #00eaff 50%, #ff4fd8 100%);
+  --lux-font-head: 'Montserrat', 'Inter', 'Segoe UI', Arial, sans-serif;
+  --lux-font-body: 'Inter', 'Segoe UI', Arial, sans-serif;
+}
+
+body {
+  background: linear-gradient(120deg, var(--lux-bg) 60%, var(--lux-bg2) 100%);
+  color: var(--lux-white);
+  font-family: var(--lux-font-body);
+  font-size: 18px;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+header {
+  background: rgba(16,16,24,0.98);
+  box-shadow: 0 4px 32px 0 rgba(0,0,0,0.25);
+  color: var(--lux-white);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem 6vw;
+  border-bottom: 2px solid transparent;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.logo {
+  font-family: var(--lux-font-head);
+  font-size: 2.7rem;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  background: var(--lux-chrome);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 2px 32px var(--lux-glow1), 0 0 8px var(--lux-glow2);
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 2.5rem;
+}
+
+nav ul li a {
+  color: var(--lux-white);
+  font-weight: 600;
+  font-size: 1.1rem;
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  transition: border 0.3s, color 0.3s;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  position: relative;
+}
+nav ul li a::after {
+  content: "";
+  display: block;
+  height: 2px;
+  width: 0;
+  background: var(--lux-chrome);
+  transition: width 0.4s cubic-bezier(.4,2,.6,1);
+  position: absolute;
+  left: 0; bottom: 0;
+}
+nav ul li a:hover {
+  color: var(--lux-glow2);
+}
+nav ul li a:hover::after {
+  width: 100%;
+}
+
+.hero {
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(120deg, #181828 60%, #101018 100%);
+  padding: 8rem 2rem 6rem 2rem;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: "";
+  position: absolute;
+  top: -20%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120vw;
+  height: 120vw;
+  background: radial-gradient(circle, var(--lux-glow2) 0%, transparent 70%);
+  opacity: 0.08;
+  z-index: 0;
+  pointer-events: none;
+}
+.hero h1 {
+  font-family: var(--lux-font-head);
+  font-size: 4.5rem;
+  font-weight: 900;
+  letter-spacing: 0.01em;
+  margin-bottom: 1.5rem;
+  background: var(--lux-chrome);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 4px 32px var(--lux-glow1), 0 0 2px var(--lux-glow2);
+  animation: fadeInDown 1.2s both;
+}
+.hero p {
+  font-size: 1.6rem;
+  color: var(--lux-white);
+  max-width: 700px;
+  margin-bottom: 3rem;
+  text-shadow: 0 2px 8px #000;
+  animation: fadeInUp 1.5s both;
+}
+.hero img {
+  max-width: 700px;
+  width: 90vw;
+  margin: 2rem 0 0 0;
+  border-radius: 2rem;
+  box-shadow: 0 12px 48px 0 var(--lux-glow1), 0 0 0 8px var(--lux-glow2);
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(6px);
+  border: 2px solid var(--lux-glow2);
+  animation: fadeIn 2s both;
+}
+
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-60px);}
+  to { opacity: 1; transform: translateY(0);}
+}
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(60px);}
+  to { opacity: 1; transform: translateY(0);}
+}
+@keyframes fadeIn {
+  from { opacity: 0;}
+  to { opacity: 1;}
+}
+
+/* Neon/Glass Button */
+.btn {
+  padding: 1.2rem 3rem;
+  background: var(--lux-chrome);
+  color: var(--lux-bg);
+  border: none;
+  font-weight: 800;
+  border-radius: 2rem;
+  font-size: 1.3rem;
+  box-shadow: 0 2px 24px 0 var(--lux-glow2), 0 0 8px 2px var(--lux-glow3);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: box-shadow 0.3s, background 0.3s, color 0.3s, transform 0.2s;
+  outline: none;
+  letter-spacing: 0.05em;
+  z-index: 1;
+}
+.btn::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 2rem;
+  box-shadow: 0 0 32px 8px var(--lux-glow2), 0 0 64px 16px var(--lux-glow3);
+  opacity: 0;
+  transition: opacity 0.4s;
+  z-index: -1;
+}
+.btn:hover, .btn:focus {
+  color: var(--lux-white);
+  background: var(--lux-chrome);
+  box-shadow: 0 8px 48px 0 var(--lux-glow2), 0 0 32px 8px var(--lux-glow3);
+  transform: scale(1.07);
+}
+.btn:hover::after, .btn:focus::after {
+  opacity: 0.3;
+}
+
+/* Glowing Button */
+.glow-btn {
+  --glow-color: rgb(217, 176, 255);
+  --glow-spread-color: rgba(191, 123, 255, 0.781);
+  --enhanced-glow-color: rgb(231, 206, 255);
+  --btn-color: rgb(100, 61, 136);
+  border: 0.25em solid var(--glow-color);
+  padding: 1em 3em;
+  color: var(--glow-color);
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+  background-color: var(--btn-color);
+  border-radius: 1em;
+  outline: none;
+  box-shadow: 0 0 1em 0.25em var(--glow-color),
+    0 0 4em 1em var(--glow-spread-color),
+    inset 0 0 0.74em 0.25em var(--glow-color);
+  text-shadow: 0 0 0.5em var(--glow-color);
+  position: relative;
+  transition: all 0.3s;
+}
+
+.glow-btn::after {
+  pointer-events: none;
+  content: "";
+  position: absolute;
+  top: 120%;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: var(--glow-spread-color);
+  filter: blur(2em);
+  opacity: 0.7;
+  transform: perspective(1.5em) rotateX(35deg) scale(1, 0.6);
+}
+
+.glow-btn:hover {
+  color: var(--btn-color);
+  background-color: var(--glow-color);
+  box-shadow: 0 0 1em 0.25em var(--glow-color),
+    0 0 4em 2em var(--glow-spread-color),
+    inset 0 0 0.75em 0.25em var(--glow-color);
+}
+
+.glow-btn:active {
+  box-shadow: 0 0 0.6em 0.25em var(--glow-color),
+    0 0 2.5em 2em var(--glow-spread-color),
+    inset 0 0 0.5em 0.25em var(--glow-color);
+}
+
+/* Glassmorphism Product Cards */
+.product-card {
+  background: var(--lux-glass);
+  border-radius: 2.5rem;
+  box-shadow: 0 8px 32px 0 var(--lux-glow1), 0 0 0 4px var(--lux-glow2);
+  backdrop-filter: blur(24px);
+  border: 2px solid var(--lux-glow2);
+  padding: 3rem 2.5rem;
+  text-align: center;
+  transition: transform 0.4s cubic-bezier(.4,2,.6,1), box-shadow 0.3s;
+  will-change: transform;
+  animation: fadeInUp 1.2s both;
+  position: relative;
+}
+.product-card:hover {
+  transform: translateY(-20px) scale(1.05);
+  box-shadow: 0 32px 96px 0 var(--lux-glow2), 0 0 64px 8px var(--lux-glow3);
+}
+.product-card img {
+  max-width: 90%;
+  border-radius: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 8px 32px 0 var(--lux-glow1);
+  background: rgba(255,255,255,0.1);
+  border: 2px solid var(--lux-glow2);
+}
+
+.product-card h3 {
+  margin: 1.2rem 0 0.5rem 0;
+  font-size: 1.7rem;
+  font-family: var(--lux-font-head);
+  font-weight: 800;
+  background: var(--lux-chrome);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: 0.03em;
+}
+
+.product-card .price {
+  font-weight: 700;
+  color: var(--lux-glow2);
+  font-size: 1.3rem;
+  margin-top: 0.5rem;
+  text-shadow: 0 2px 8px var(--lux-glow1);
+}
+
+/* Section Animations */
+.section {
+  opacity: 0;
+  transform: translateY(60px);
+  transition: opacity 0.8s cubic-bezier(.4,2,.6,1), transform 0.8s cubic-bezier(.4,2,.6,1);
+}
+.section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Parallax effect for hero/product images */
+.parallax {
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 2rem 0;
+  background: rgba(16,16,24,0.98);
+  color: var(--lux-glow2);
+  font-size: 1.1rem;
+  border-top: 2px solid var(--lux-glow2);
+  box-shadow: 0 -2px 32px 0 rgba(0,0,0,0.15);
+  letter-spacing: 0.05em;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .hero h1 { font-size: 2.5rem; }
+  .product-card { padding: 1.2rem 1rem; }
+}
+@media (max-width: 600px) {
+  header { flex-direction: column; gap: 1rem; padding: 1rem 2vw; }
+  .hero { padding: 4rem 1rem 2rem 1rem; }
+}

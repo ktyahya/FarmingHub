@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farming Hub - Sell Your Crops</title>
+    <style>
+        /* CSS Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f7f2;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: #2e7d32;
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .logo img {
+            width: 40px;
+            height: 40px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            color: #a5d6a7;
+        }
+
+        /* Hero Section */
+        .hero {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3));
+            color: white;
+            text-align: center;
+            padding: 4rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .cta-button {
+            background-color: #ff8f00;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 4px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background-color: #f57c00;
+            transform: translateY(-2px);
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #2e7d32;
+            font-size: 2rem;
+        }
+
+        /* Features Section */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .feature-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+        }
+
+        .feature-icon {
+            background-color: #e8f5e9;
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+        }
+
+        .feature-card h3 {
+            margin-bottom: 1rem;
+            color: #2e7d32;
+        }
+
+        /* Sell Crops Form */
+        .sell-crops-section {
+            background-color: white;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 4rem;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #555;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: #2e7d32;
+            box-shadow: 0 0 0 2px rgba(46, 125, 50, 0.2);
+        }
+
+        .file-upload {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border: 2px dashed #ddd;
+            border-radius: 4px;
+            padding: 2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .file-upload:hover {
+            border-color: #2e7d32;
+        }
+
+        .file-upload p {
+            margin-top: 1rem;
+            color: #777;
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+
+        .submit-button {
+            background-color: #2e7d32;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 4px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-top: 1rem;
+        }
+
+        .submit-button:hover {
+            background-color: #1b5e20;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #1b5e20;
+            color: white;
+            padding: 3rem 0;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a {
+            color: #a5d6a7;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: white;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-icon {
+            width: 36px;
+            height: 36px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .social-icon:hover {
+            background-color: white;
+            color: #1b5e20;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            nav ul {
+                gap: 1rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <img src="LOGO.SVG" alt="Farming Hub Logo">
+                Farming Hub
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Marketplace</a></li>
+                    <li><a href="#">Sell Crops</a></li>
+                    <li><a href="#">My Account</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Sell Your Crops Directly to Buyers</h1>
+            <p>Cut out the middleman and get better prices for your harvest</p>
+            <button class="cta-button">Start Selling Now</button>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Features Section -->
+        <h2 class="section-title">Why Sell on Farming Hub?</h2>
+            <div class="features">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-coins fa-2x" style="color:#2e7d32;"></i>
+                    </div>
+                    <h3>Better Prices</h3>
+                    <p>Sell directly to buyers and get up to 20% more for your crops compared to traditional markets.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-seedling fa-2x" style="color:#2e7d32;"></i>
+                    </div>
+                    <h3>Simple Process</h3>
+                    <p>List your crops in minutes with our easy-to-use platform designed specifically for farmers.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-lock fa-2x" style="color:#2e7d32;"></i>
+                    </div>
+                    <h3>Secure Payments</h3>
+                    <p>Get paid safely and on time with our secure payment system and buyer verification.</p>
+                </div>
+            </div>
+            
+
+        <!-- Sell Crops Form Section -->
+        <h2 class="section-title" id="sell-crops">Sell Your Crops</h2>
+        <div class="sell-crops-section">
+            <form id="crop-listing-form">
+                <div class="form-grid">
+                    <div>
+                        <div class="form-group">
+                            <label for="crop-name">Crop Name</label>
+                            <input type="text" id="crop-name" class="form-control" placeholder="e.g., Organic Tomatoes" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="crop-category">Category</label>
+                            <select id="crop-category" class="form-control" required>
+                                <option value="">Select a category</option>
+                                <option value="vegetables">Vegetables</option>
+                                <option value="fruits">Fruits</option>
+                                <option value="grains">Grains</option>
+                                <option value="pulses">Pulses</option>
+                                <option value="others">Others</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="crop-quantity">Quantity Available (kg)</label>
+                            <input type="number" id="crop-quantity" class="form-control" min="1" placeholder="e.g., 100" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="crop-price">Price per kg ($)</label>
+                            <input type="number" id="crop-price" class="form-control" min="0.01" step="0.01" placeholder="e.g., 2.50" required>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="form-group">
+                            <label for="crop-description">Description</label>
+                            <textarea id="crop-description" class="form-control" rows="5" placeholder="Describe your crops, growing methods, quality, etc." required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="crop-harvest-date">Harvest Date</label>
+                            <input type="date" id="crop-harvest-date" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="crop-location">Farm Location</label>
+                            <input type="text" id="crop-location" class="form-control" placeholder="e.g., Greenville, CA" required>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="form-group">
+                            <label>Upload Photos</label>
+                            <label for="crop-photos" class="file-upload">
+                                <img src="/api/placeholder/64/64" alt="Upload icon">
+                                <p>Click to upload photos of your crops</p>
+                                <input type="file" id="crop-photos" accept="image/*" multiple>
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label for="crop-certification">Certifications (Optional)</label>
+                            <select id="crop-certification" class="form-control" multiple>
+                                <option value="organic">Organic</option>
+                                <option value="non-gmo">Non-GMO</option>
+                                <option value="fair-trade">Fair Trade</option>
+                                <option value="pesticide-free">Pesticide Free</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="submit-button">List My Crops</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>Farming Hub</h3>
+                <p>Connecting farmers directly with buyers for a sustainable agricultural future.</p>
+                <div class="social-icons">
+                    <a href="#" class="social-icon">FB</a>
+                    <a href="#" class="social-icon">TW</a>
+                    <a href="#" class="social-icon">IG</a>
+                    <a href="#" class="social-icon">YT</a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Browse Marketplace</a></li>
+                    <li><a href="#">Sell Your Crops</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Resources</h3>
+                <ul>
+                    <li><a href="#">Farming Tips</a></li>
+                    <li><a href="#">Market Prices</a></li>
+                    <li><a href="#">Weather Updates</a></li>
+                    <li><a href="#">Crop Calendar</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <ul>
+                    <li>Email: info@farminghub.com</li>
+                    <li>Phone: +1 (555) 123-4567</li>
+                    <li>Address: 123 Farm Road, Countryside, Country</li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2025 Farming Hub. All rights reserved.
+        </div>
+    </footer>
+
+    <script>
+        // JavaScript for the Farming Hub
+        document.addEventListener('DOMContentLoaded', function() {
+            // Function to handle form submission
+            const cropForm = document.getElementById('crop-listing-form');
+            cropForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Get form values
+                const cropName = document.getElementById('crop-name').value;
+                const cropCategory = document.getElementById('crop-category').value;
+                const cropQuantity = document.getElementById('crop-quantity').value;
+                const cropPrice = document.getElementById('crop-price').value;
+                const cropDescription = document.getElementById('crop-description').value;
+                
+                // In a real application, you would send this data to a server
+                // For demonstration, we'll show an alert
+                alert(`Your crop listing for ${cropName} has been submitted successfully! Once approved, it will appear in the marketplace.`);
+                
+                // Reset the form
+                cropForm.reset();
+            });
+            
+            // File upload preview functionality
+            const fileInput = document.getElementById('crop-photos');
+            const fileUpload = document.querySelector('.file-upload');
+            
+            fileInput.addEventListener('change', function() {
+                if (this.files.length > 0) {
+                    const fileCount = this.files.length;
+                    fileUpload.querySelector('p').textContent = `${fileCount} ${fileCount === 1 ? 'file' : 'files'} selected`;
+                }
+            });
+            
+            // CTA button scroll to sell form
+            const ctaButton = document.querySelector('.cta-button');
+            ctaButton.addEventListener('click', function() {
+                document.getElementById('sell-crops').scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+            
+            // Add responsive navigation toggle for mobile
+            const mediaQuery = window.matchMedia('(max-width: 768px)');
+            if (mediaQuery.matches) {
+                const nav = document.querySelector('nav');
+                const logo = document.querySelector('.logo');
+                
+                logo.addEventListener('click', function() {
+                    nav.classList.toggle('show');
+                });
+            }
+        });
+    </script>
+</body>
+</html>

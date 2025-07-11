@@ -1,0 +1,984 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GrowPaddy - From Seed to Global Shelf</title>
+    <style>
+        /* CSS will be linked from external file */
+    </style>
+    <link rel="stylesheet" href="realtask.css">
+</head>
+<body>
+    <header class="main-header">
+        <div class="logo-container">
+            <svg class="logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path d="M17,8C8,10 5.9,16.17 3.82,21.34L5.71,22L6.66,19.7C7.14,19.87 7.64,20 8,20C19,20 22,3 22,3C21,5 14,5.25 9,6.25C4,7.25 2,11.5 2,13.5C2,15.5 3.75,17.25 3.75,17.25C7,8 17,8 17,8Z" fill="#4CAF50"/>
+            </svg>
+            <h1>Farming Hub</h1>
+        </div>
+        <nav>
+            <ul class="main-nav">
+                <li><a href="#" class="active">Paddy</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Paddy Farming</h1>
+            <h2>From Seed to Global Shelf—It's not farming, it's future-building.</h2>
+            <p>Follow our step-by-step guide to grow export-quality paddy and transform your farming venture.</p>
+            <button class="btn start-journey-btn">Start Your Journey</button>
+        </div>
+        <div class="hero-image">
+            <img src="paddy.jpg" alt="Paddy Field" class="paddy-field-img">
+        </div>
+    </section>
+
+    <section class="journey-tracker">
+        <h2>Your Paddy Farming Journey</h2>
+        <div class="progress-container">
+            <div class="progress-bar">
+                <div class="progress" id="farming-progress"></div>
+            </div>
+            <div class="progress-stats">
+                <span id="progress-percentage">0%</span> Complete
+                <span id="phase-indicator">Phase 1: Land & Infrastructure Setup</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="phases-container">
+        <div class="phases-tabs">
+            <button class="phase-tab active" data-phase="1">Phase 1<br>Land Prep</button>
+            <button class="phase-tab" data-phase="2">Phase 2<br>Seed Selection</button>
+            <button class="phase-tab" data-phase="3">Phase 3<br>Nursery</button>
+            <button class="phase-tab" data-phase="4">Phase 4<br>Field Management</button>
+            <button class="phase-tab" data-phase="5">Phase 5<br>Harvesting</button>
+            <button class="phase-tab" data-phase="6">Phase 6<br>Processing</button>
+            <button class="phase-tab" data-phase="7">Phase 7<br>Quality</button>
+            <button class="phase-tab" data-phase="8">Phase 8<br>Export Setup</button>
+            <button class="phase-tab" data-phase="9">Phase 9<br>Distribution</button>
+        </div>
+
+        <div class="phase-content active" id="phase-1">
+            <div class="phase-header">
+                <h3>PHASE 1: LAND & INFRASTRUCTURE SETUP</h3>
+                <p class="phase-objective">Objective: Ready your terrain and tools.</p>
+            </div>
+            <div class="phase-details">
+                <div class="info-panel">
+                    <div class="phase-description">
+                        <p>The foundation of successful paddy farming begins with selecting the right land and preparing it properly. Paddy thrives in lowland areas with good water retention capabilities.</p>
+                        <div class="resources">
+                            <h4>Resources:</h4>
+                            <ul>
+                                <li><a href="#">Soil Testing Guide</a></li>
+                                <li><a href="#">Field Leveling Tutorial</a></li>
+                                <li><a href="#">Local Equipment Suppliers</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="phase-image">
+                        <img src="/api/placeholder/300/200" alt="Land Preparation" class="phase-img">
+                    </div>
+                </div>
+                <div class="tasks-panel">
+                    <h4>Tasks to Complete:</h4>
+                    <div class="task-list">
+                        <div class="task">
+                            <input type="checkbox" id="task1-1">
+                            <label for="task1-1">Identify 1–2 acres of lowland with water access</label>
+                            <button class="info-btn">i</button>
+                            <div class="task-details hidden">
+                                <p>Look for flat land near reliable water sources. Ideal paddy fields have clay soil that retains water well.</p>
+                            </div>
+                        </div>
+                        <div class="task">
+                            <input type="checkbox" id="task1-2">
+                            <label for="task1-2">Test soil pH (target: 5.5–7), NPK levels</label>
+                            <button class="info-btn">i</button>
+                            <div class="task-details hidden">
+                                <p>Use a soil testing kit or send samples to an agricultural lab. Adjust soil pH with lime (to raise) or sulfur (to lower).</p>
+                            </div>
+                        </div>
+                        <div class="task">
+                            <input type="checkbox" id="task1-3">
+                            <label for="task1-3">Construct bunds (field edges) and drainage channels</label>
+                            <button class="info-btn">i</button>
+                            <div class="task-details hidden">
+                                <p>Build 30cm high bunds around your field to retain water. Create drainage channels to control water levels.</p>
+                            </div>
+                        </div>
+                        <div class="task">
+                            <input type="checkbox" id="task1-4">
+                            <label for="task1-4">Buy/lease tools: plough, leveller, water pump</label>
+                            <button class="info-btn">i</button>
+                            <div class="task-details hidden">
+                                <p>Essential equipment includes a plough for turning soil, leveller for creating a flat surface, and water pump for irrigation management.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="task-completion">
+                        <span id="phase1-completion">0 of 4 tasks completed</span>
+                        <button class="btn mark-complete-btn" disabled>Mark Phase Complete</button>
+                    </div>
+                </div>
+            </div>
+            <div class="community-insights">
+                <h4>Community Insights</h4>
+                <div class="insights-container">
+                    <div class="insight-card">
+                        <div class="farmer-profile">
+                            <img src="/api/placeholder/40/40" alt="Farmer" class="farmer-img">
+                            <span class="farmer-name">Rajesh K.</span>
+                        </div>
+                        <p>"Testing soil pH was a game-changer for me. My yield increased by 30% after proper pH adjustment!"</p>
+                    </div>
+                    <div class="insight-card">
+                        <div class="farmer-profile">
+                            <img src="/api/placeholder/40/40" alt="Farmer" class="farmer-img">
+                            <span class="farmer-name">Meena S.</span>
+                        </div>
+                        <p>"Don't skimp on leveling your field. Even a slight slope can cause uneven water distribution and affect growth."</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Phase 2 content -->
+        <div class="phase-content" id="phase-2">
+            <div class="phase-header">
+                <h3>PHASE 2: SEED STRATEGY</h3>
+                <p class="phase-objective">Objective: Secure high-quality input.</p>
+            </div>
+            <div class="phase-details">
+                <div class="info-panel">
+                    <div class="phase-description">
+                        <p>Seed selection is critical for successful paddy cultivation. High-quality seeds ensure better germination rates, disease resistance, and ultimately higher yields. The right variety selection depends on your local climate, soil conditions, and market demands.</p>
+                        <div class="resources">
+                            <h4>Resources:</h4>
+                            <ul>
+                                <li><a href="#">Paddy Variety Comparison Chart</a></li>
+                                <li><a href="#">Seed Germination Techniques</a></li>
+                                <li><a href="#">Certified Seed Suppliers Directory</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="phase-image">
+                        <img src="/api/placeholder/300/200" alt="Paddy Seeds" class="phase-img">
+                    </div>
+                </div>
+                <div class="tasks-panel">
+                    <h4>Tasks to Complete:</h4>
+                    <div class="task-list">
+                        <div class="task">
+                            <input type="checkbox" id="task2-1">
+                            <label for="task2-1">Research regional paddy varieties (IR64, Basmati 1121, hybrid)</label>
+                            <button class="info-btn">i</button>
+                            <div class="task-details hidden">
+                                <p>Choose varieties suitable for your region's climate. Consider factors like yield potential, disease resistance, and market demand. Popular options include IR64 (high yield), Basmati 1121 (aromatic), and hybrid varieties.</p>
+                            </div>
+                        </div>
+                        <div class="task">
+                            <input type="checkbox" id="task2-2">
+                            <label for="task2-2">Buy certified seeds (5–7 kg/acre for nursery)</label>
+                            <button class="info-btn">i</button>
+                            <div class="task-details hidden">
+                                <p>Purchase seeds from authorized dealers or agricultural extension centers. Certified seeds have higher germination rates and are free from seed-borne diseases. For nursery plantation, you'll need 5-7 kg of seeds per acre.</p>
+                            </div>
+                        </div>
+                        <div class="task">
+                            <input type="checkbox" id="task2-3">
+                            <label for="task2-3">Soak in salt water; remove floaters (bad seeds)</label>
+                            <button class="info-btn">i</button>
+                            <div class="task-details hidden">
+                                <p>Create a salt solution by adding 200g of salt to 10 liters of water. Drop seeds into the solution and stir. The good seeds will sink while the immature or damaged seeds will float. Remove and discard all floating seeds.</p>
+                            </div>
+                        </div>
+                        <div class="task">
+                            <input type="checkbox" id="task2-4">
+                            <label for="task2-4">Pre-sprout in gunny bags 24–48 hrs</label>
+                            <button class="info-btn">i</button>
+                            <div class="task-details hidden">
+                                <p>After cleaning, soak seeds in water for 24 hours. Drain excess water and wrap seeds in moist gunny bags. Keep in a warm, dark place for 24-48 hours until small white shoots appear (1-2mm long).</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="task-completion">
+                        <span id="phase2-completion">0 of 4 tasks completed</span>
+                        <button class="btn mark-complete-btn" disabled>Mark Phase Complete</button>
+                    </div>
+                </div>
+            </div>
+            <div class="community-insights">
+                <h4>Community Insights</h4>
+                <div class="insights-container">
+                    <div class="insight-card">
+                        <div class="farmer-profile">
+                            <img src="/api/placeholder/40/40" alt="Farmer" class="farmer-img">
+                            <span class="farmer-name">Vijay P.</span>
+                        </div>
+                        <p>"I always test my seeds by soaking them in water with 2% salt solution. I've saved thousands by eliminating poor quality seeds before planting."</p>
+                    </div>
+                    <div class="insight-card">
+                        <div class="farmer-profile">
+                            <img src="/api/placeholder/40/40" alt="Farmer" class="farmer-img">
+                            <span class="farmer-name">Lakshmi R.</span>
+                        </div>
+                        <p>"Don't skip pre-sprouting! It gives seeds a head start and improves germination by 30%. Just be careful not to let sprouts grow too long before sowing."</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Phase 3 content -->
+        <div class="phase-content" id="phase-3">
+            <div class="phase-header">
+                <h3>PHASE 3: NURSERY & TRANSPLANTATION</h3>
+                <p class="phase-objective">Objective: Grow a healthy young batch.</p>
+            </div>
+            <div class="phase-details">
+                <div class="info-panel">
+                    <div class="phase-description">
+                        <p>The nursery stage is crucial for developing healthy seedlings before transplantation to the main field. This phase ensures uniform growth and better establishment of seedlings, resulting in higher yields and reduced seed requirements.</p>
+                        <div class="resources">
+                            <h4>Resources:</h4>
+                            <ul>
+                                <li><a href="#">Nursery Management Guide</a></li>
+                                <li><a href="#">Transplantation Techniques Video</a></li>
+                                <li><a href="#">Organic Manure Production</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="phase-image">
+                        <img src="/api/placeholder/300/200" alt="Paddy Nursery" class="phase-img">
+                    </div>
+                </div>
+                <div class="tasks-panel">
+                    <h4>Tasks to Complete:</h4>
+                    <div class="task-list">
+                        <div class="task">
+                            <input type="checkbox" id="task3-1">
+                            <label for="task3-1">Prepare 100 sqm nursery/acre</label>
+                            <button class="info-btn">i</button>
+                            <div class="task-details hidden">
+                                <p>Select a level area close to a water source. Plough the soil 2-3 times to a fine tilth. Create slightly raised beds (10-15cm) with good drainage. For every acre of main field, prepare 100 square meters of nursery area.</p>
+                            </div>
+                        </div>
+                        <div class="task">
+                            <input type="checkbox" id="task3-2">
+                            <label for="task3-2">Mix FYM (farmyard manure) with soil</label>
+                            <button class="info-btn">i</button>
+                            <div class="task-details hidden">
+                                <p>Apply 100-150kg of well-decomposed farmyard manure per 100 square meters of nursery area. Mix thoroughly with the soil during the final ploughing to improve soil fertility and structure.</p>
+                            </div>
+                        </div>
+                        <div class="task">
+                            <input type="checkbox" id="task3-3">
+                            <label for="task3-3">Sow pre-sprouted seeds, water twice daily</label>
+                            <button class="info-btn">i</button>
+                            <div class="task-details hidden">
+                                <p>Spread pre-sprouted seeds evenly on the nursery bed. Maintain a thin water layer (1-2cm) for the first 5-7 days. Water the nursery beds twice daily - morning and evening - to maintain moisture levels.</p>
+                            </div>
+                        </div>
+                        <div class="task">
+                            <input type="checkbox" id="task3-4">
+                            <label for="task3-4">At 20 days, uproot & transplant to main field with 20x15 cm spacing</label>
+                            <button class="info-btn">i</button>
+                            <div class="task-details hidden">
+                                <p>Seedlings are ready for transplanting when they are 20-25 days old (15-20cm tall with 4-5 leaves). Gently uproot seedlings, bundle them in groups of 50-100. Transplant within 30 minutes of uprooting, maintaining 20cm row-to-row and 15cm plant-to-plant spacing.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="task-completion">
+                        <span id="phase3-completion">0 of 4 tasks completed</span>
+                        <button class="btn mark-complete-btn" disabled>Mark Phase Complete</button>
+                    </div>
+                </div>
+            </div>
+            <div class="community-insights">
+                <h4>Community Insights</h4>
+                <div class="insights-container">
+                    <div class="insight-card">
+                        <div class="farmer-profile">
+                            <img src="/api/placeholder/40/40" alt="Farmer" class="farmer-img">
+                            <span class="farmer-name">Ramesh G.</span>
+                        </div>
+                        <p>"I apply neem cake powder (100g/sqm) to the nursery soil. It acts as an organic pest repellent and provides slow-release nutrients to seedlings."</p>
+                    </div>
+                    <div class="insight-card">
+                        <div class="farmer-profile">
+                            <img src="/api/placeholder/40/40" alt="Farmer" class="farmer-img">
+                            <span class="farmer-name">Priya M.</span>
+                        </div>
+                        <p>"For transplanting, I use the 'square grid' method with a rope marked at 20cm intervals. It ensures perfect spacing and makes weeding with a mechanical weeder much easier later."</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Phase 4 content -->
+        <div class="phase-content" id="phase-4">
+            <div class="phase-header">
+                <h3>PHASE 4: FIELD CULTIVATION & CARE</h3>
+                <p class="phase-objective">Objective: Push for vigorous growth.</p>
+            </div>
+            <div class="phase-details">
+                <div class="info-panel">
+                    <div class="phase-description">
+                        <p>Proper field management is essential for healthy paddy growth and optimal yields. This phase involves maintaining water levels, nutrient management through fertilization, weed control, and pest monitoring to ensure the crop thrives.</p>
+                        <div class="resources">
+                            <h4>Resources:</h4>
+                            <ul>
+                                <li><a href="#">Water Management Calculator</a></li>
+                                <li><a href="#">Integrated Pest Management Guide</a></li>
+                                <li><a href="#">Fertilization Schedule Chart</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="phase-image">
+                        <img src="/api/placeholder/300/200" alt="Field Management" class="phase-img">
+                    </div>
+                </div>
+                <div class="tasks-panel">
+                    <h4>Tasks to Complete:</h4>
+                    <div class="task-list">
+                        <div class="task">
+                            <input type="checkbox" id="task4-1">
+                            <label for="task4-1">Maintain water levels: 3 cm early, 5 cm post-tillering</label>
+                            <button class="info-btn">i</button>
+                            <div class="task-details hidden">
+                                <p>After transplanting, maintain a shallow water level (2-3cm) for the first 7-10 days to help seedlings establish. Increase to 5cm after tillering stage (30-45 days after transplanting). Drain the field 7-10 days before harvesting.</p>
+                            </div>
+                        </div>
+                        <div class="task">
+                            <input type="checkbox" id="task4-2">
+                            <label for="task4-2">Apply fertilizers in 3 splits (urea, DAP, potash)</label>
+                            <button class="info-btn">i</button>
+                            <div class="task-details hidden">
+                                <p>Apply fertilizers in three stages:
+                                <br>1. Basal application (before transplanting): Full dose of DAP (100kg/acre) and half dose of potash (25kg/acre)
+                                <br>2. Tillering stage (25-30 days): Half of urea (50kg/acre)
+                                <br>3. Panicle initiation (45-60 days): Remaining urea (50kg/acre) and potash (25kg/acre)</p>
+                            </div>
+                        </div>
+                        <div class="task">
+                            <input type="checkbox" id="task4-3">
+                            <label for="task4-3">Use rotary weeder after 15 days; repeat every 10 days</label>
+                            <button class="info-btn">i</button>
+                            <div class="task-details hidden">
+                                <p>Start weeding 15 days after transplanting using a rotary weeder. This buries weeds into the soil where they decompose and act as green manure. Repeat weeding every 10-12 days until canopy closure (when plants grow dense enough to shade out weeds).</p>
+                            </div>
+                        </div>
+                        <div class="task">
+                            <input type="checkbox" id="task4-4">
+                            <label for="task4-4">Monitor for pests (BPH, stem borers); spray neem oil/biopesticides</label>
+                            <button class="info-btn">i</button>
+                            <div class="task-details hidden">
+                                <p>Inspect fields weekly for pests like Brown Plant Hopper (BPH), stem borers, leaf folders, and diseases like blast and blight. Use neem oil (5ml/liter) or approved biopesticides as a preventive measure. For export-grade rice, minimize chemical pesticide use and maintain proper records of any applications.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="task-completion">
+                        <span id="phase4-completion">0 of 4 tasks completed</span>
+                        <button class="btn mark-complete-btn" disabled>Mark Phase Complete</button>
+                    </div>
+                </div>
+            </div>
+            <div class="community-insights">
+                <h4>Community Insights</h4>
+                <div class="insights-container">
+                    <div class="insight-card">
+                        <div class="farmer-profile">
+                            <img src="/api/placeholder/40/40" alt="Farmer" class="farmer-img">
+                            <span class="farmer-name">Suresh B.</span>
+                        </div>
+                        <p>"I practice alternate wetting and drying (AWD) irrigation. It saves 30% water and reduces methane emissions while maintaining yields. Just install a 30cm perforated pipe to monitor water levels."</p>
+                    </div>
+                    <div class="insight-card">
+                        <div class="farmer-profile">
+                            <img src="/api/placeholder/40/40" alt="Farmer" class="farmer-img">
+                            <span class="farmer-name">Anita K.</span>
+                        </div>
+                        <p>"Installing yellow sticky traps and pheromone traps around the field helps me detect pest infestations early. Early detection means less damage and reduced need for interventions."</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Phase 5 content -->
+        <div class="phase-content" id="phase-5">
+            <div class="phase-header">
+                <h3>PHASE 5: HARVESTING & POST-HARVEST</h3>
+                <p class="phase-objective">Objective: Maximize grain yield and quality.</p>
+            </div>
+            <div class="phase-details">
+                <div class="info-panel">
+                    <div class="phase-description">
+                        <p>Harvesting at the right time and proper post-harvest handling are crucial for maintaining grain quality and minimizing losses. This phase focuses on capturing the maximum yield from your field and preserving grain quality through proper drying and storage.</p>
+                        <div class="resources">
+                            <h4>Resources:</h4>
+                            <ul>
+                                <li><a href="#">Harvest Timing Guide</a></li>
+                                <li><a href="#">Grain Moisture Measurement Methods</a></li>
+                                <li><a href="#">Storage Facility Requirements</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="phase-image">
+                        <img src="/api/placeholder/300/200" alt="Rice Harvesting" class="phase-img">
+                    </div>
+                </div>
+                <div class="tasks-panel">
+                    <h4>Tasks to Complete:</h4>
+                    <div class="task-list">
+                        <div class="task">
+                            <input type="checkbox" id="task5-1">
+                            <label for="task5-1">Check grain maturity—yellowing, hard grain</label>
+                            <button class="info-btn">i</button>
+                            <div class="task-details hidden">
+                                <p>Harvest when 80-90% of the grains in the panicle have turned golden yellow or straw-colored. The grains should feel hard when pressed between teeth. This usually occurs 30-35 days after flowering or 110-130 days after transplanting, depending on the variety.</p>
+                            </div>
+                        </div>
+                        <div class="task">
+                            <input type="checkbox" id="task5-2">
+                            <label for="task5-2">Harvest manually or with reaper</label>
+                            <button class="info-btn">i</button>
+                            <div class="task-details hidden">
+                                <p>Drain the field 7-10 days before harvesting. Use either manual harvesting with sickles or mechanical reapers. For manual harvesting, cut the stalks 15-20cm above ground level. For mechanical harvesting, adjust the cutter bar height properly to minimize grain losses.</p>
+                            </div>
+                        </div>
+                        <div class="task">
+                            <input type="checkbox" id="task5-3">
+                            <label for="task5-3">Dry grains in sun to 12–14% moisture</label>
+                            <button class="info-btn">i</button>
+                            <div class="task-details hidden">
+                                <p>Spread harvested paddy on clean concrete floors or tarpaulins in thin layers (3-5cm thick). Dry under the sun for 2-3 days, turning the grains every 2-3 hours to ensure uniform drying. The final moisture content should be 12-14% for safe storage. Test by biting the grain - it should break with a clean snap.</p>
+                            </div>
+                        </div>
+                        <div class="task">
+                            <input type="checkbox" id="task5-4">
+                            <label for="task5-4">Store in jute bags on wooden pallets in dry, cool space</label>
+                            <button class="info-btn">i</button>
+                            <div class="task-details hidden">
+                                <p>Pack dried paddy in clean jute bags (50kg capacity). Store bags on wooden pallets at least 30cm above floor and 60cm away from walls to prevent moisture absorption. The storage area should be clean, dry, well-ventilated, and protected from rodents and insects. Monitor for pests and moisture regularly.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="task-completion">
+                        <span id="phase5-completion">0 of 4 tasks completed</span>
+                        <button class="btn mark-complete-btn" disabled>Mark Phase Complete</button>
+                    </div>
+                </div>
+            </div>
+            <div class="community-insights">
+                <h4>Community Insights</h4>
+                <div class="insights-container">
+                    <div class="insight-card">
+                        <div class="farmer-profile">
+                            <img src="/api/placeholder/40/40" alt="Farmer" class="farmer-img">
+                            <span class="farmer-name">Karthik N.</span>
+                        </div>
+                        <p>"I use a simple digital moisture meter ($20 online) to check grain moisture before storage. It's a small investment that has saved me from major losses due to fungal issues in storage."</p>
+                    </div>
+                    <div class="insight-card">
+                        <div class="farmer-profile">
+                            <img src="/api/placeholder/40/40" alt="Farmer" class="farmer-img">
+                            <span class="farmer-name">Deepa S.</span>
+                        </div>
+                        <p>"Placing neem leaves between layers of rice bags acts as a natural insect repellent during storage. It's chemical-free and very effective for maintaining organic certification."</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Phase 6 content -->
+        <div class="phase-content" id="phase-6">
+            <div class="phase-header">
+                <h3>PHASE 6: PROCESSING & POLISHING</h3>
+                <p class="phase-objective">Objective: Turn raw paddy into export-quality rice.</p>
+            </div>
+            <div class="phase-details">
+                <div class="info-panel">
+                    <div class="phase-description">
+                        <p>Processing transforms raw paddy into marketable rice through milling, which removes the husk and bran layers. For export markets, proper processing, grading, and packaging are essential to meet international standards and command premium prices.</p>
+                        <div class="resources">
+                            <h4>Resources:</h4>
+                            <ul>
+                                <li><a href="#">Rice Milling Process Guide</a></li>
+                                <li><a href="#">Packaging Materials Comparison</a></li>
+                                <li><a href="#">Rice Grading Standards</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="phase-image">
+                        <img src="/api/placeholder/300/200" alt="Rice Processing" class="phase-img">
+                    </div>
+                </div>
+                <div class="tasks-panel">
+                    <h4>Tasks to Complete:</h4>
+                    <div class="task-list">
+                   <div class="task">
+    <input type="checkbox" id="task6-1">
+    <label for="task6-1">Partner with local rice mill for de-husking, polishing</label>
+    <button class="info-btn">i</button>
+    <div class="task-details hidden">
+        <p>Identify and partner with a quality rice mill in your area that has modern equipment for de-husking and polishing. Modern mills with rubber roll hullers reduce grain breakage and improve recovery rates. Aim for mills with color sorters for export-grade quality.</p>
+    </div>
+</div>
+<div class="task">
+    <input type="checkbox" id="task6-2">
+    <label for="task6-2">Ensure uniform grain length, low broken %, and sort impurities</label>
+    <button class="info-btn">i</button>
+    <div class="task-details hidden">
+        <p>After milling, ensure the rice is sorted for uniform grain length. Export-grade rice typically requires less than 5% broken grains. Use gravity separators and color sorters to remove impurities, discolored grains, and foreign matter. This improves visual appeal and market value.</p>
+    </div>
+</div>
+<div class="task">
+    <input type="checkbox" id="task6-3">
+    <label for="task6-3">Pack in 1/5/25 kg laminated bags with ziplock or vacuum seal</label>
+    <button class="info-btn">i</button>
+    <div class="task-details hidden">
+        <p>Use food-grade, moisture-proof packaging materials. For retail exports, 1-5kg laminated bags with ziplock or vacuum sealing are preferred. For wholesale, 25kg bags are standard. Ensure packaging includes proper labeling with production date, batch number, and storage instructions.</p>
+    </div>
+</div>
+<div class="task">
+    <input type="checkbox" id="task6-4">
+    <label for="task6-4">Store in climate-controlled facility before shipping</label>
+    <button class="info-btn">i</button>
+    <div class="task-details hidden">
+        <p>Store processed rice in a clean, dry, and pest-free environment with controlled temperature (below 15°C) and humidity (below 65%). This prevents moisture reabsorption, insect infestation, and maintains grain quality until export shipment.</p>
+    </div>
+</div>
+</div>
+<div class="task-completion">
+    <span id="phase6-completion">0 of 4 tasks completed</span>
+    <button class="btn mark-complete-btn" disabled>Mark Phase Complete</button>
+</div>
+</div>
+</div>
+<div class="community-insights">
+<h4>Community Insights</h4>
+<div class="insights-container">
+    <div class="insight-card">
+        <div class="farmer-profile">
+            <img src="/api/placeholder/40/40" alt="Farmer" class="farmer-img">
+            <span class="farmer-name">Sandeep T.</span>
+        </div>
+        <p>"Investing in my own mini rice mill saved me 30% in processing costs. For small farmers, a shared mill with 5-6 neighbors can be more cost-effective than commercial milling."</p>
+    </div>
+    <div class="insight-card">
+        <div class="farmer-profile">
+            <img src="/api/placeholder/40/40" alt="Farmer" class="farmer-img">
+            <span class="farmer-name">Divya P.</span>
+        </div>
+        <p>"Premium packaging with QR codes linking to our farm story and cultivation practices helped us secure European buyers who pay 15% more than the standard market rate."</p>
+    </div>
+</div>
+</div>
+</div>
+
+<!-- Phase 7 content -->
+<div class="phase-content" id="phase-7">
+<div class="phase-header">
+    <h3>PHASE 7: QUALITY ASSURANCE</h3>
+    <p class="phase-objective">Objective: Meet export-grade benchmarks.</p>
+</div>
+<div class="phase-details">
+    <div class="info-panel">
+        <div class="phase-description">
+            <p>Quality assurance is critical for accessing premium export markets. This phase ensures your rice meets international safety and quality standards through rigorous testing and proper documentation, allowing you to command higher prices in global markets.</p>
+            <div class="resources">
+                <h4>Resources:</h4>
+                <ul>
+                    <li><a href="#">International Rice Quality Standards</a></li>
+                    <li><a href="#">NABL Accredited Laboratory Directory</a></li>
+                    <li><a href="#">Export Documentation Templates</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="phase-image">
+            <img src="/api/placeholder/300/200" alt="Quality Testing" class="phase-img">
+        </div>
+    </div>
+    <div class="tasks-panel">
+        <h4>Tasks to Complete:</h4>
+        <div class="task-list">
+            <div class="task">
+                <input type="checkbox" id="task7-1">
+                <label for="task7-1">Test for pesticide residues, aflatoxins (use NABL lab)</label>
+                <button class="info-btn">i</button>
+                <div class="task-details hidden">
+                    <p>Send samples to an NABL (National Accreditation Board for Testing and Calibration Laboratories) accredited lab for testing pesticide residues, heavy metals, and aflatoxins. Different markets have different Maximum Residue Limits (MRLs), with EU having the strictest standards. Maintain proper documentation of test results.</p>
+                </div>
+            </div>
+            <div class="task">
+                <input type="checkbox" id="task7-2">
+                <label for="task7-2">Label with nutritional info, origin, harvest date</label>
+                <button class="info-btn">i</button>
+                <div class="task-details hidden">
+                    <p>Create labels that comply with the destination country's requirements. Include nutritional information, country of origin, harvest date, expiry date, net weight, storage instructions, and traceability information. For EU markets, allergen information and metric measurements are mandatory.</p>
+                </div>
+            </div>
+            <div class="task">
+                <input type="checkbox" id="task7-3">
+                <label for="task7-3">Ensure adherence to buyer's specs (e.g. Basmati: 6.61mm+ length, fragrance)</label>
+                <button class="info-btn">i</button>
+                <div class="task-details hidden">
+                    <p>Different markets have specific requirements. For example, authentic Basmati requires a minimum grain length of 6.61mm, distinct fragrance, and elongation ratio of over 1.7 when cooked. Other varieties have different specifications. Document and adhere to the exact specifications requested by your buyers.</p>
+                </div>
+            </div>
+            <div class="task">
+                <input type="checkbox" id="task7-4">
+                <label for="task7-4">Implement batch traceability system</label>
+                <button class="info-btn">i</button>
+                <div class="task-details hidden">
+                    <p>Develop a traceability system that tracks each batch from field to export. Record details like field location, planting date, inputs used, harvest date, processing date, and test results. This information is increasingly required by importers and helps in quickly addressing any quality issues.</p>
+                </div>
+            </div>
+        </div>
+        <div class="task-completion">
+            <span id="phase7-completion">0 of 4 tasks completed</span>
+            <button class="btn mark-complete-btn" disabled>Mark Phase Complete</button>
+        </div>
+    </div>
+</div>
+<div class="community-insights">
+    <h4>Community Insights</h4>
+    <div class="insights-container">
+        <div class="insight-card">
+            <div class="farmer-profile">
+                <img src="/api/placeholder/40/40" alt="Farmer" class="farmer-img">
+                <span class="farmer-name">Harish J.</span>
+            </div>
+            <p>"I keep samples from each batch for 12 months as a reference. This has saved me twice when dealing with quality disputes from international buyers."</p>
+        </div>
+        <div class="insight-card">
+            <div class="farmer-profile">
+                <img src="/api/placeholder/40/40" alt="Farmer" class="farmer-img">
+                <span class="farmer-name">Ritu S.</span>
+            </div>
+            <p>"Using a simple QR code system that links to our farm's cultivation practices and test reports increased buyer trust. It costs nearly nothing but adds significant perceived value."</p>
+        </div>
+    </div>
+</div>
+</div>
+
+<!-- Phase 8 content -->
+<div class="phase-content" id="phase-8">
+<div class="phase-header">
+    <h3>PHASE 8: EXPORT SETUP</h3>
+    <p class="phase-objective">Objective: Prepare for market entry.</p>
+</div>
+<div class="phase-details">
+    <div class="info-panel">
+        <div class="phase-description">
+            <p>Setting up the legal framework and documentation for exporting is a critical step for accessing international markets. This phase ensures you have all the necessary registrations, certifications, and partnerships to legally and efficiently export your rice.</p>
+            <div class="resources">
+                <h4>Resources:</h4>
+                <ul>
+                    <li><a href="#">Export Registration Guide</a></li>
+                    <li><a href="#">Phytosanitary Certification Process</a></li>
+                    <li><a href="#">Freight Forwarder Directory</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="phase-image">
+            <img src="/api/placeholder/300/200" alt="Export Documentation" class="phase-img">
+        </div>
+    </div>
+    <div class="tasks-panel">
+        <h4>Tasks to Complete:</h4>
+        <div class="task-list">
+            <div class="task">
+                <input type="checkbox" id="task8-1">
+                <label for="task8-1">Register with APEDA (India) or national export body</label>
+                <button class="info-btn">i</button>
+                <div class="task-details hidden">
+                    <p>Register with your country's agricultural export promotion agency (APEDA in India). This registration is essential for legally exporting agricultural products and accessing government support schemes, trade fairs, and buyer-seller meets. The registration needs to be renewed periodically.</p>
+                </div>
+            </div>
+            <div class="task">
+                <input type="checkbox" id="task8-2">
+                <label for="task8-2">Get IEC (Import Export Code)</label>
+                <button class="info-btn">i</button>
+                <div class="task-details hidden">
+                    <p>Apply for an Import Export Code (IEC) from your country's commerce ministry or equivalent authority. This unique 10-digit code is mandatory for all export-import transactions. The application requires business registration documents, bank account details, and address proof.</p>
+                </div>
+            </div>
+            <div class="task">
+                <input type="checkbox" id="task8-3">
+                <label for="task8-3">Apply for FSSAI license, phytosanitary & fumigation certificates</label>
+                <button class="info-btn">i</button>
+                <div class="task-details hidden">
+                    <p>Obtain food safety certification (FSSAI in India) that ensures your rice meets safety standards. For each export consignment, apply for a phytosanitary certificate from the plant quarantine department, which confirms the rice is free from pests and diseases. Get fumigation certificates if required by the importing country.</p>
+                </div>
+            </div>
+            <div class="task">
+                <input type="checkbox" id="task8-4">
+                <label for="task8-4">Partner with freight forwarder for customs clearance</label>
+                <button class="info-btn">i</button>
+                <div class="task-details hidden">
+                    <p>Select and partner with an experienced freight forwarder who specializes in agricultural exports. They will handle customs documentation, shipping arrangements, container booking, and logistics. Choose companies with experience in your target export markets and good relationships with shipping lines.</p>
+                </div>
+            </div>
+        </div>
+        <div class="task-completion">
+            <span id="phase8-completion">0 of 4 tasks completed</span>
+            <button class="btn mark-complete-btn" disabled>Mark Phase Complete</button>
+        </div>
+    </div>
+</div>
+<div class="community-insights">
+    <h4>Community Insights</h4>
+    <div class="insights-container">
+        <div class="insight-card">
+            <div class="farmer-profile">
+                <img src="/api/placeholder/40/40" alt="Farmer" class="farmer-img">
+                <span class="farmer-name">Pramod V.</span>
+            </div>
+            <p>"I formed a farmer producer organization (FPO) with 30 other paddy farmers. Pooling our resources helped us afford export certifications and increased our bargaining power with buyers."</p>
+        </div>
+        <div class="insight-card">
+            <div class="farmer-profile">
+                <img src="/api/placeholder/40/40" alt="Farmer" class="farmer-img">
+                <span class="farmer-name">Shalini T.</span>
+            </div>
+            <p>"Getting organic certification was expensive and took 3 years, but now our rice commands a 40% premium in European markets. The long-term returns justified the investment."</p>
+        </div>
+    </div>
+</div>
+</div>
+
+<!-- Phase 9 content -->
+<div class="phase-content" id="phase-9">
+<div class="phase-header">
+    <h3>PHASE 9: SALES & DISTRIBUTION</h3>
+    <p class="phase-objective">Objective: Create pull in the global market.</p>
+</div>
+<div class="phase-details">
+    <div class="info-panel">
+        <div class="phase-description">
+            <p>The final phase focuses on marketing, selling, and distributing your rice to international buyers. Building a brand identity, finding reliable buyers, and establishing sustainable business relationships are key to long-term success in export markets.</p>
+            <div class="resources">
+                <h4>Resources:</h4>
+                <ul>
+                    <li><a href="#">International B2B Platform Guide</a></li>
+                    <li><a href="#">Trade Exhibition Calendar</a></li>
+                    <li><a href="#">Export Contract Templates</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="phase-image">
+            <img src="/api/placeholder/300/200" alt="Global Distribution" class="phase-img">
+        </div>
+    </div>
+    <div class="tasks-panel">
+        <h4>Tasks to Complete:</h4>
+        <div class="task-list">
+            <div class="task">
+                <input type="checkbox" id="task9-1">
+                <label for="task9-1">Build a brand: story, logo, organic/eco claim if valid</label>
+                <button class="info-btn">i</button>
+                <div class="task-details hidden">
+                    <p>Develop a unique brand identity with a compelling story about your farm, farming practices, and rice quality. Create professional packaging with a memorable logo and consistent design. If applicable, highlight organic certification, sustainability practices, or regional specialties that add value.</p>
+                </div>
+            </div>
+            <div class="task">
+                <input type="checkbox" id="task9-2">
+                <label for="task9-2">List on Alibaba, IndiaMart, Amazon Global, or export platforms</label>
+                <button class="info-btn">i</button>
+                <div class="task-details hidden">
+                    <p>Create professional profiles on international B2B platforms like Alibaba, IndiaMart, or region-specific platforms. Include high-quality images, detailed product specifications, minimum order quantities, and pricing information. Respond promptly to inquiries and maintain your profile with updated information.</p>
+                </div>
+            </div>
+            <div class="task">
+                <input type="checkbox" id="task9-3">
+                <label for="task9-3">Attend virtual trade expos; reach distributors & wholesalers</label>
+                <button class="info-btn">i</button>
+                <div class="task-details hidden">
+                    <p>Participate in international food and agriculture trade shows, either in person or virtually. These events provide opportunities to showcase your products, meet potential buyers, and understand market trends. Prepare professional product presentations, samples, and business cards for these events.</p>
+                </div>
+            </div>
+            <div class="task">
+                <input type="checkbox" id="task9-4">
+                <label for="task9-4">Negotiate contracts with L/C (Letter of Credit) for security</label>
+                <button class="info-btn">i</button>
+                <div class="task-details hidden">
+                    <p>When finalizing deals with international buyers, use secure payment methods like Letters of Credit (L/C) that protect both parties. Clearly define terms regarding quality specifications, delivery timelines, payment schedules, and dispute resolution in your contracts. Consider working with an international trade lawyer for your first few contracts.</p>
+                </div>
+            </div>
+        </div>
+        <div class="task-completion">
+            <span id="phase9-completion">0 of 4 tasks completed</span>
+            <button class="btn mark-complete-btn" disabled>Mark Phase Complete</button>
+        </div>
+    </div>
+</div>
+<div class="community-insights">
+    <h4>Community Insights</h4>
+    <div class="insights-container">
+        <div class="insight-card">
+            <div class="farmer-profile">
+                <img src="/api/placeholder/40/40" alt="Farmer" class="farmer-img">
+                <span class="farmer-name">Rohit M.</span>
+            </div>
+            <p>"We created video stories of our farm and traditional farming methods, sharing them on social media. This digital presence attracted premium buyers from Japan who were looking for authentic, traditionally-grown rice."</p>
+        </div>
+        <div class="insight-card">
+            <div class="farmer-profile">
+                <img src="/api/placeholder/40/40" alt="Farmer" class="farmer-img">
+                <span class="farmer-name">Nisha P.</span>
+            </div>
+            <p>"Start with smaller orders to build relationships and trust. My first export was just 500kg, but that buyer now takes 20 tons yearly because we proved our reliability and consistency."</p>
+        </div>
+    </div>
+</div>
+</div>
+
+</section>
+
+<section class="success-stories">
+<h2>Success Stories</h2>
+<div class="stories-container">
+    <div class="story-card">
+        <div class="story-header">
+            <img src="/api/placeholder/60/60" alt="Farmer" class="farmer-large-img">
+            <div class="story-title">
+                <h3>Rajesh Kumar</h3>
+                <p>Maharashtra, India</p>
+            </div>
+        </div>
+        <p class="story-content">"I started with just one acre of paddy three years ago. Following this systematic approach, I now export premium Basmati to Dubai and earn 3x what I made selling locally. The key was focusing on quality and certification."</p>
+    </div>
+    <div class="story-card">
+        <div class="story-header">
+            <img src="/api/placeholder/60/60" alt="Farmer" class="farmer-large-img">
+            <div class="story-title">
+                <h3>Meena Devi</h3>
+                <p>Punjab, India</p>
+            </div>
+        </div>
+        <p class="story-content">"Our women farmers' collective started processing and packaging rice ourselves instead of selling raw paddy. By controlling the value chain and getting organic certification, we now export to Germany at premium prices."</p>
+    </div>
+    <div class="story-card">
+        <div class="story-header">
+            <img src="/api/placeholder/60/60" alt="Farmer" class="farmer-large-img">
+            <div class="story-title">
+                <h3>John Mbeki</h3>
+                <p>Tanzania</p>
+            </div>
+        </div>
+        <p class="story-content">"The systematic approach to water management and pest control transformed my yields. I now export aromatic rice to Kenya and Uganda. Starting with the basics and building step by step was crucial to my success."</p>
+    </div>
+</div>
+</section>
+
+<section class="resources-section">
+<h2>Additional Resources</h2>
+<div class="resources-grid">
+    <div class="resource-card">
+        <svg class="resource-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M21,16.5C21,16.88 20.79,17.21 20.47,17.38L12.57,21.82C12.41,21.94 12.21,22 12,22C11.79,22 11.59,21.94 11.43,21.82L3.53,17.38C3.21,17.21 3,16.88 3,16.5V7.5C3,7.12 3.21,6.79 3.53,6.62L11.43,2.18C11.59,2.06 11.79,2 12,2C12.21,2 12.41,2.06 12.57,2.18L20.47,6.62C20.79,6.79 21,7.12 21,7.5V16.5Z" fill="#4CAF50"/>
+        </svg>
+        <h3>Training Workshops</h3>
+        <p>Join our monthly online workshops covering advanced farming techniques, new export regulations, and market trends.</p>
+        <a href="#" class="resource-link">View Schedule</a>
+    </div>
+    <div class="resource-card">
+        <svg class="resource-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M12,3L1,9L12,15L21,10.09V17H23V9M5,13.18V17.18L12,21L19,17.18V13.18L12,17L5,13.18Z" fill="#4CAF50"/>
+        </svg>
+        <h3>Farm Advisory</h3>
+        <p>Get personalized guidance from agricultural experts and export consultants through one-on-one virtual sessions.</p>
+        <a href="#" class="resource-link">Book Consultation</a>
+    </div>
+    <div class="resource-card">
+        <svg class="resource-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M17,12V3A1,1 0 0,0 16,2H3A1,1 0 0,0 2,3V17L6,13H16A1,1 0 0,0 17,12M21,6H19V15H6V17A1,1 0 0,0 7,18H18L22,22V7A1,1 0 0,0 21,6Z" fill="#4CAF50"/>
+        </svg>
+        <h3>Farmer Community</h3>
+        <p>Connect with other export-oriented farmers, share experiences, and solve problems together in our online forum.</p>
+        <a href="#" class="resource-link">Join Community</a>
+    </div>
+    <div class="resource-card">
+        <svg class="resource-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M12,5.5A3.5,3.5 0 0,1 15.5,9A3.5,3.5 0 0,1 12,12.5A3.5,3.5 0 0,1 8.5,9A3.5,3.5 0 0,1 12,5.5M5,8C5.56,8 6.08,8.15 6.53,8.42C6.38,9.85 6.8,11.27 7.66,12.38C7.16,13.34 6.16,14 5,14A3,3 0 0,1 2,11A3,3 0 0,1 5,8M19,8A3,3 0 0,1 22,11A3,3 0 0,1 19,14C17.84,14 16.84,13.34 16.34,12.38C17.2,11.27 17.62,9.85 17.47,8.42C17.92,8.15 18.44,8 19,8M5.5,18.25C5.5,16.18 8.41,14.5 12,14.5C15.59,14.5 18.5,16.18 18.5,18.25V20H5.5V18.25M0,20V18.5C0,17.11 1.89,15.94 4.45,15.6C3.86,16.28 3.5,17.22 3.5,18.25V20H0M24,20H20.5V18.25C20.5,17.22 20.14,16.28 19.55,15.6C22.11,15.94 24,17.11 24,18.5V20Z" fill="#4CAF50"/>
+        </svg>
+        <h3>Buyer Connect</h3>
+        <p>Access our database of verified international rice buyers and distributors looking for quality products.</p>
+        <a href="#" class="resource-link">Explore Network</a>
+    </div>
+</div>
+</section>
+
+<footer class="main-footer">
+<div class="footer-content">
+    <div class="footer-logo">
+        <svg class="logo-small" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M17,8C8,10 5.9,16.17 3.82,21.34L5.71,22L6.66,19.7C7.14,19.87 7.64,20 8,20C19,20 22,3 22,3C21,5 14,5.25 9,6.25C4,7.25 2,11.5 2,13.5C2,15.5 3.75,17.25 3.75,17.25C7,8 17,8 17,8Z" fill="#4CAF50"/>
+        </svg>
+        <span>Farming Hub</span>
+    </div>
+    <div class="footer-links">
+        <div class="link-group">
+            <h4>Resources</h4>
+            <ul>
+                <li><a href="#">Farming Guides</a></li>
+                <li><a href="#">Export Regulations</a></li>
+                <li><a href="#">Market Reports</a></li>
+                <li><a href="#">Training Videos</a></li>
+            </ul>
+        </div>
+        <div class="link-group">
+            <h4>Connect</h4>
+            <ul>
+                <li><a href="#">Community Forum</a></li>
+                <li><a href="#">Expert Advice</a></li>
+                <li><a href="#">Buyer Network</a></li>
+                <li><a href="#">Events</a></li>
+            </ul>
+        </div>
+        <div class="link-group">
+            <h4>About Us</h4>
+            <ul>
+                <li><a href="#">Our Mission</a></li>
+                <li><a href="#">Success Stories</a></li>
+                <li><a href="#">Team</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="footer-bottom">
+    <p>&copy; 2025 Farming Hub. All rights reserved.</p>
+    <div class="social-links">
+        <a href="#" class="social-link">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path d="M12 2.04C6.5 2.04 2 6.53 2 12.06C2 17.06 5.66 21.21 10.44 21.96V14.96H7.9V12.06H10.44V9.85C10.44 7.34 11.93 5.96 14.22 5.96C15.31 5.96 16.45 6.15 16.45 6.15V8.62H15.19C13.95 8.62 13.56 9.39 13.56 10.18V12.06H16.34L15.89 14.96H13.56V21.96C18.34 21.21 22 17.06 22 12.06C22 6.53 17.5 2.04 12 2.04Z" fill="#FFFFFF"/>
+            </svg>
+        </a>
+        <a href="#" class="social-link">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path d="M22.46,6C21.69,6.35 20.86,6.58 20,6.69C20.88,6.16 21.56,5.32 21.88,4.31C21.05,4.81 20.13,5.16 19.16,5.36C18.37,4.5 17.26,4 16,4C13.65,4 11.73,5.92 11.73,8.29C11.73,8.63 11.77,8.96 11.84,9.27C8.28,9.09 5.11,7.38 3,4.79C2.63,5.42 2.42,6.16 2.42,6.94C2.42,8.43 3.17,9.75 4.33,10.5C3.62,10.5 2.96,10.3 2.38,10C2.38,10 2.38,10 2.38,10.03C2.38,12.11 3.86,13.85 5.82,14.24C5.46,14.34 5.08,14.39 4.69,14.39C4.42,14.39 4.15,14.36 3.89,14.31C4.43,16 6,17.26 7.89,17.29C6.43,18.45 4.58,19.13 2.56,19.13C2.22,19.13 1.88,19.11 1.54,19.07C3.44,20.29 5.7,21 8.12,21C16,21 20.33,14.46 20.33,8.79C20.33,8.6 20.33,8.42 20.32,8.23C21.16,7.63 21.88,6.87 22.46,6" fill="#FFFFFF"/>
+            </svg>
+        </a>
+
+        <!-- Add any other social media links you want -->
+        <a href="#" class="social-link">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path d="M7.8,2H16.2C19.4,2 22,4.6 22,7.8V16.2A5.8,5.8 0 0,1 16.2,22H7.8C4.6,22 2,19.4 2,16.2V7.8A5.8,5.8 0 0,1 7.8,2M7.6,4A3.6,3.6 0 0,0 4,7.6V16.4C4,18.39 5.61,20 7.6,20H16.4A3.6,3.6 0 0,0 20,16.4V7.6C20,5.61 18.39,4 16.4,4H7.6M17.25,5.5A1.25,1.25 0 0,1 18.5,6.75A1.25,1.25 0 0,1 17.25,8A1.25,1.25 0 0,1 16,6.75A1.25,1.25 0 0,1 17.25,5.5M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9Z" fill="#FFFFFF"/>
+            </svg>
+        </a>
+
+    </div>
+</div>
+</footer>
+
+<!-- Add script tag for JavaScript -->
+<script src="realtask.js"></script>
+
+</body>
+</html>
